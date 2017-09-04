@@ -1,0 +1,477 @@
+\begin{figure}[t]
+\centering
+\begin{subfigure}{0.4\textwidth} 
+\includegraphics[width=\textwidth]{data/correctness/musage_global_new} 
+ \caption{Global hypervisor cache (memory backed)}
+ \label{fig:globalmem} 
+\end{subfigure} 
+%
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{data/correctness/musage_ddecker_new} 
+ \caption{\dd{} hypervisor cache (memory backed)}
+ \label{fig:ddeckermem} 
+\end{subfigure} 
+%
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{data/correctness/musage_global_ssd_new} 
+ \caption{\dd{} SSD backed hypervisor cache}
+ \label{fig:ddeckerssd} 
+\end{subfigure} 
+%
+\caption{Hypervisor cache distribution across application containers with
+         different cache settings.}
+\label{fig:expt1}
+\end{figure}
+%{\bf Setup:} 
+
+\section{Experimental evaluation}
+\label{sec:expt}
+
+The efficacy of \dd{} is established with a set of experiments using the
+following setup,
+a 16-core blade server with 3.4 Ghz  CPUs (Intel Xeon CPU E5-2650)
+and 32 GB RAM.
+%
+A 240GB Kingston Digital SSDNow V300 SATA 3 solid state disk, accessed
+through the SATA interface.
+%
+As workloads, we used
+the \web, \proxy, \mail{} and \video{} profiles of the 
+Filebench~\cite{filebench} workload suite.
+%  
+%
+
+%\subsection{\dd{} cache size enforcement}
+\subsection{Impact of caching modes}
+The aim of this experiment is to establish correct working of the
+two different cache store options of \dd, and to demonstrate the
+benefits of partitioning the hypervisor cache.
+
+\subsubsection{Cache size distribution}
+For the experiment, a VM with 8 VCPUS and 8 GB RAM was used.
+%
+Four application containers (Container 1-4)  configured with 1GB RAM each,
+executed the \web, \proxy, \mail, \video{} workloads.
+%
+All other resources (CPU and network) were allocated equally
+across the application containers.  
+%
+Three hypervisor caching modes were compared---(i) a memory backed hypervisor cache 
+with capacity 3 GB with global cache management mode, no
+partitioning on a per-container basis (referred as \emph{Global}) % (\S Figure~\ref{fig:expt1}(a)), 
+(ii) a 3 GB memory backed hypervisor cache with 
+\dd{} cache management partitioning the cache equally among all containers
+(referred as \emph{DDMem}),
+%(\S Figure~\ref{fig:expt1}(b)), 
+%cache management mode where every application container was assigned equal
+%weightage of 25 
+(iii) a 240 GB SSD backed hypervisor cache with 
+\dd{} cache management partitioning the cache equally among all containers
+(referred as \emph{DDSSD}),
+%(\S Figure~\ref{fig:expt1}(c)). 
+%cache management parwith equal weightages for each application container.
+%weightage of 25 (\S Figure~\ref{fig:expt1}(c)). 
+% 
+
+\begin{figure}[t]
+  \centering
+\includegraphics[width=0.4\textwidth]{data/correctness/only_video}
+ \caption{\dd{} cache usage by \video-workload with different cache
+          configurations.}
+ \label{fig:video}
+\end{figure} 
+
+
+
+\begin{table*}[t]
+\scriptsize
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-13}
+\multicolumn{1}{c}{} & \multicolumn{4}{|c|}{\bf Global (Memory)} & \multicolumn{4}{c|}{\bf DoubleDecker (Memory)} & \multicolumn{4} {c|}{\bf DoubleDecker (SSD)}\\
+\cline{1-13}
+\multicolumn{1}{|c|}{} & {\bf Throu-} & {\bf Latency} & {\bf lookup-} & {\bf \# of} & {\bf Throu-} & {\bf Latency} & {\bf lookup-}&{ \bf \# of} & {\bf Throu-} & {\bf Latency} & {\bf lookup-} & {\bf \# of}\\
+%
+\multicolumn{1}{|c|}{} & {\bf ghput} & {\bf (ms)} & {\bf to store} & {\bf evictions} & {\bf ghput} & {\bf (ms)} & {\bf to store}& {\bf evictions} & {\bf ghput} & {\bf (ms)} & {\bf to store} & {\bf evictions}\\
+%
+\multicolumn{1}{|c|}{\bf Workload} & {\bf (MB/s)} & & {\bf ratio (\%)} & & {\bf (MB/s)} & & {\bf ratio (\%)} & & {\bf (MB/s)} & & {\bf ratio (\%)} & \\
+\hline
+\hline
+\web & 14.2 & 29.2 & 93 & 209815 & 93.7 & 3 & 99 & 0 & 5.5 & 73 & 91 & 0 \\
+\hline
+\proxy & 5.4 & 89.1 & 76 & 2880 & 5.6 & 85.9 & 76 & 0 & 5.2 & 91.5 & 75.9 & 0\\
+\hline
+\mail & 1.3 & 598.2 & 1 & 159793 & 1.4 & 555.7 & 32 & 0 & 2 & 386.7 & 44 & 0\\
+\hline
+\video & 1276 & 2.6 & 65 & 1650424 & 1188 & 2.9 & 57 & 2076672 & 481.5 & 7.8 & 67 & 0 \\
+\hline
+\end{tabular}
+\caption{Application performance and cache behavior comparison with 
+         different hypervisor caching schemes.}
+\label{table:hcache}
+\end{center}
+\end{table*}
+
+
+Hypervisor cache distribution across the containers executing the \web, \proxy{} 
+and \mail{} workloads with different caching configurations is 
+shown in Figure~\ref{fig:expt1}.
+%
+The \video{} workload dominated the cache usage; for better presentation
+cache usage of the \video{} workload with different caching modes is shown
+in Figure~\ref{fig:video}.
+%
+As can be seen from Figure~\ref{fig:expt1} and Figure~\ref{fig:video}, 
+for the first 500 seconds there is no requirement of the hypervisor cache
+except for the \video{} workload. During this duration, container with
+the \video{} workload occupies up to 3 GB of the cache (in all caching modes).
+Beyond 500 seconds, the memory requirements of other workloads also
+do not fit in the VM and the corresponding containers 
+contend for the second chance cache.
+Correspondingly, the \video{} workloads cache occupancy decreases from 3 GB to 1.4 GB.
+
+With the global cache policy, there is no deterministic cache capacity 
+for each container and all four workloads contend for the cache.
+The result cache size distribution for each workload is dependent
+on its access patterns and the access rate. Since \video{} workload
+has the higher IO rate and quantity, it still consumes the largest
+portion of the cache. The cache of the \web{} and \mail{} workloads
+gets effected the most, as objects of these containers are evicted
+from the cache due to pressure from the other two workloads.
+In fact, the \mail{} workload gets a maximum share of less than 400 MB,
+as against its fair share of 750 MB.
+
+%With global hypervisor caching (Figure~\ref{fig:globalmem}, Figure~\ref{fig:video}), 
+%\video-workload reached a cache usage peak of 
+%3GB and came down to around 1.4 GB when other workloads started contending
+%for the cache.
+%
+With \dd{} equal-weight cache partitioning (Figure~\ref{fig:ddeckermem}), 
+the \video-workload was allocated ~1.2 GB when other workloads started 
+using the cache up to their own entitlements. 
+Since, the \proxy{} and \mail{} workloads did not consume their 
+entire share of 750 MB,
+the remaining capacity was shared between the \video and \web workloads.
+In fact the \web{} workload does not consume more than 800 MB and hence
+~1.2 GB is consumed by the \video{} workload.
+%
+Note that with \dd{} mode, cache usage of workloads other than \video-workload 
+did not take any dips once they reached their respective peaks as opposed to
+global mode.
+%
+This demonstrates {\em resource conservative nature} of \dd{} 
+cache provisioning with {\em guaranteed isolation} according
+to assigned priorities.
+%
+With SSD backed hypervisor caching (Figure~\ref{fig:ddeckerssd}), the cache 
+size was sufficient to for all the workloads. This verified two things,
+one the \dd{} could manage a SSD-based cache store correctly and
+second the peak cache usage in the DDMem caching mode.
+%
+%So, the cache usage behavior was same with global mode and \dd{} eviction
+%mode.
+
+
+\subsubsection{Performance impacts with caching modes}
+%Impact of cache distribution changes is shown in Table~\ref{table:hcache}.
+The impact of cache distribution with different caching modes
+is reported in Table~\ref{table:hcache}.
+%
+\web{} throughput with the DDMem caching mode (\dd{} with in-memory cache store)
+was approximately {\em six times} better than the global caching mode.
+%
+With the \dd{}  DD-mem caching mode, \mail{} and \proxy{} workloads resulted
+in marginal improvements ($\sim$5\%) and the \video-workload resulted 
+in small degradation ($\sim$6\%) in application performance.
+%
+With the global eviction mode, evictions from workloads other than
+\video{} were noticed, e.g., $\sim$200K evictions from the \web{} container. 
+%
+With \dd, only the \video-workload was victimized to enforce
+equity at the container-level according to the equal cache distribution
+configuration.
+
+No evictions were noticed with the SSD-backed hypervisor cache % because
+as the cache could host all disk cache blocks for all the
+containers.
+%
+Because of the increased IO latency of SSD access, application
+throughput for the \web{} and \video{} workloads 
+was around 300\% lower compared to memory backed hypervisor cache.
+%\puru{not sure how to interpret 300\% decrease.}
+%\puru{to replace---decreased by 90\% and 60\% respectively.}
+%
+Interestingly, throughput and latency of \mail{} workload improved
+by 30\% and 40\%, respectively.
+%
+This is due to offloading of disk operations of other workloads 
+through sufficient SSD availability in the hypervisor cache.
+%
+These results show that even in case of sufficient hypervisor cache
+availability, enforcing fairness across applications can result in
+significant application benefits.
+
+
+\subsection{Flexible hypervisor cache management}
+%
+\begin{table}[h]
+\scriptsize
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+{\bf Cache} & {\bf Webserver} & {\bf Proxycache} & {\bf Mail} & {\bf Videoserver} \\
+{\bf Setting} & {\bf (C1)} & {\bf (C2)} & {\bf (C3)} & {\bf (C4)} \\
+\hline 
+\hline 
+DDMem & Mem: 32 & Mem: 25 & Mem: 25 & Mem: 18 \\
+DDMemEx & Mem: 40 & Mem: 30 & Mem: 30 & Mem: 0 \\
+DDHybrid & Mem: 40 & Mem: 30 & Mem: 30 & SSD:100 \\
+\hline 
+\end{tabular}
+\caption{\dd{} cache configuration settings.}
+%\puru{in previous experiment mentioned as DD-mem,etc. Fix formatting}}
+\label{table:settings}
+\end{center}
+\end{table}
+%
+To analyze the effectiveness of container level priority extensions to the 
+hypervisor caching, we have performed an experiment with application containers
+configured with different memory limits.
+%
+In this experiment, the \web{} container (C1) was configured with a memory 
+limit of 1.25 GB (through \cgroups) and the \video{} container (C4) was configured 
+with a memory limit of 750 MB.
+%
+Other two containers were configured with 1 GB memory limit each.
+%
+The \dd{} memory cache size was limited to 2 GB.
+%2 GB limit was set to the total \dd{} memory cache size,
+%%which was shared by all
+%the applications.
+%   
+In the global eviction mode (referred to as Global), only the container 
+level memory limits were in action while the \dd{} hypervisor cache was 
+shared globally without any container-level priority enforcement.
+%
+Three different cache settings (DDMem, DDMemEx and DDHybrid), shown in 
+Table~\ref{table:settings}, were used to partition the \dd{} hypervisor cache
+across the application containers.
+%
+The DDMem policy extended the \cgroup{} level memory allocation weights to the
+\dd{} hypervisor cache.
+%
+The DDHybrid policy used the SSD store for the \video{} workload, while
+containers C1-C3  shared the memory cache with weights 40, 30 and 30, respectively.
+\begin{figure}[t]
+  \centering
+\includegraphics[width=0.47\textwidth]{data/singlevm_policy/speedup}
+ \caption{Comparison of application performance with differentiated 
+          hypervisor caching policies vs. global hypervisor cache
+          management.}
+ \label{fig:policy_speedup}
+\end{figure} 
+\begin{figure}[t]
+\centering
+\begin{subfigure}{0.4\textwidth} 
+\includegraphics[width=\textwidth]{data/singlevm_policy/musage_global} 
+ \caption{Global hypervisor cache}
+ \label{fig:gmem1} 
+\end{subfigure} 
+%
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{data/singlevm_policy/musage_dd_mem} 
+ \caption{DDMem \dd{} policy}
+ \label{fig:ddmem} 
+\end{subfigure} 
+%
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{data/singlevm_policy/musage_dd_hybrid} 
+ \caption{DDHybrid \dd{} policy}
+ \label{fig:ddhybrid} 
+\end{subfigure} 
+%
+\caption{Hypervisor cache distribution across application containers with
+         different cache management policies.}
+\label{fig:expt2}
+\end{figure}
+
+Application throughput improvements w.r.t the global hypervisor 
+cache management mode 
+and the different \dd{} caching policies is shown in Figure~\ref{fig:policy_speedup}.
+%\puru{maybe unified is better than global.}
+%
+For the \web-workload, significant application throughput improvement
+was observed---10x, 11x and 11x compared to global caching with
+DDMem, DDMemEx and DDHybrid policies, respectively.
+%
+Around 2x, 3.2x and 3x application performance improvement resulted 
+for the \proxy-workload with the three \dd{} caching modes.
+%DDMem, DDMemEx and DDHybrid
+%policies, respectively.
+%
+With the \mail{} workload, the application performance gains were marginal.
+%
+With the \video-workload application performance decreased with
+the DDMem ($\sim$25\%) and DDMemEx ($\sim$20\%) caching modes
+compared to that of the Global mode.
+%
+This was because the application's aggressive hypervisor cache usage 
+behavior was curtailed by \dd{} policies.
+%
+When the \video-workload's hypervisor cache was moved to the SSD, 
+3.6x improvement in application throughput was observed
+compared to the global mode caching mode.
+
+ 
+
+Hypervisor cache distribution across application containers
+with the different caching modes 
+as shown in Figure~\ref{fig:expt2}.
+%
+With the global mode, the hypervisor cache usage was dominated by the \video-workload
+while other applications (C1-C3) contended for the cache
+and could never reach a proportionate sharing ratio.
+%
+With\dd's DDMem policy, cache usage of \video-workload reduced to 
+the minimum (around 400 MB), close to its fair share,
+when other applications started using the cache.
+%
+Memory cache usage by the \web, \proxy{} and \mail{} workloads is shown in 
+Figure~\ref{fig:ddhybrid} when hypervisor cache for the \video-workload 
+was moved to the SSD cache (the DDHybrid mode). 
+%
+In this case, the 2 GB memory available for the memory backed
+region of the \dd{} hypervisor cache
+%configured memory backed cache of size 2GB 
+was sufficient to serve all the application without resulting in 
+any evictions. The three containers, each occupied about 500 MB to 600 MB
+of the cache.
+
+The main take-away from this experiment was that usage of the hypervisor cache
+for different applications can be configured carefully, either to use
+the memory store or the SSD store, for positive benefits for all applications.
+
+%\puru{move figure 11 to single row.}
+
+\subsection{Dynamic cache management}
+\begin{figure}[t]
+  \centering
+\includegraphics[width=0.45\textwidth]{data/dynamic_containers/musage}
+ \caption{Dynamic policy changes with \dd{} cache and its impact on cache 
+          distribution across application containers.}
+ \label{fig:dyn_distrib}
+\end{figure} 
+%
+To demonstrate \dd's capability to apply hypervisor cache
+partitioning across containers and virtual machines
+in a dynamic manner, we performed the
+following experiments.
+%
+\subsubsection{Dynamic management across containers}
+Initially, a single VM was configured with two application containers.
+%
+%
+A 1 GB memory limit was configured for \dd{} memory cache while 
+the SSD cache size was 240 GB.
+%
+Container 1 and 2 were configured with 1 GB memory each in the
+virtual machine and 
+executed the \web{} and \proxy{} workloads, respectively.  
+%
+The \dd{} cache distribution weights 
+for Container 1 and 2 were set to 60 and 40, respectively.
+%
+After 900 seconds into the experiment, a third container (Container 3) was booted 
+which executed the \video-workload.  
+%
+At this point, the \dd{} cache distribution weights were configured as
+50, 30 and 20 for Containers 1-3, respectively.
+%
+After continuing with this setting for 900 seconds, the 
+\video-workload (Container 3)
+was configured to use the SSD store for its hypervisor cache and 
+the share of Container 1 and 2 for the memory store
+was reset to 60 and 40, respectively.
+
+The \dd{} memory cache allocation across the three containers is as shown 
+in Figure~\ref{fig:dyn_distrib}.
+%
+Initially, the cache allocation for Containers 1 and 2 were approximately 
+600 MB and 400 MB,
+respectively.
+%
+At around 1000 seconds from the start of the experiment, the \dd{} cache got 
+redistributed---$\sim$500 MB for Container 1, $\sim$300 MB  for Container 2 and
+$\sim$ 200 MB for Container 3---when Container 3 started using its cache entitlement.
+%
+Finally, when the \dd{} cache setting for Container 3 was dynamically changed 
+from ``memory'' to ``SSD'' (at around 1800 seconds), the hypervisor memory 
+cache was re-distributed in the ratio of 60:40 between Container 1 and Container 2.
+%
+Container 3 used the SSD backed \dd{} cache for the rest of the 
+experiment (not shown in Figure).
+%
+Support for dynamic cache partitioning policies enabled by \dd{} provides
+flexibility in designing higher level memory management solutions. 
+\begin{figure}[t]
+  \centering
+\includegraphics[width=0.45\textwidth]{data/dynamic_vms/musage}
+ \caption{Dynamic VM provisioning and policy changes triggering \dd{} cache 
+          distribution readjustments across VMs.}
+ \label{fig:vm_distrib}
+\end{figure} 
+
+\subsubsection{Dynamic management across virtual machines}
+In a dynamic VM provisioning setup, the number of VMs and resources
+available for each change with time.
+%
+To demonstrate \dd's suitability in this setup, we performed the
+following experiment.
+%
+Four VMs, each configured with 4GB RAM were started at an
+interval of 600 seconds and
+each executed the \video{} workload within 
+a single application container. 
+%
+Initially, the \dd{} memory backed cache size limit was 2 GB and VM1 
+was given a weightage of 100.
+%
+When VM2 boots up (at 600 seconds), the \dd{} cache weights 
+for VM1 and VM2 were set to 60 and 40, respectively.
+%
+VM3 was only allowed to use the SSD cache when it started at around 1200 
+seconds; VM1 and VM2 cache settings remained the same.
+%
+At around 1800 seconds from the start of the experiment, another
+virtual machine VM4 was started.
+and the \dd{} memory backed cache size was increased to 4 GB.
+%
+Further, the cache distribution weightages for VM1, VM2 and VM4 
+were configured as 40, 35 and 25, respectively.
+
+\dd{} cache distribution across VM1, VM2 and VM4 is as shown in
+Figure~\ref{fig:vm_distrib}.
+%
+VM1 used up the \dd{} cache entirely (2 GB) until VM2 started
+using the cache (at around 650 seconds) when the cache share of
+VM1 and VM2 became $\sim$1200 MB and $\sim$800 MB, respectively.
+%
+Instantiation of VM3 (at around 1800 seconds) did not disturb the cache
+distribution between VM1 and VM2 as VM3 used the SSD cache (VM3 usage
+not shown in Figure). 
+%
+Finally, when VM4 started and the cache capacity of \dd{} was changed 
+along with cache partitioning weights, 
+average cache usage of VM1, VM2 and VM4 was  
+around 1600 MB, 1400 MB and 1000 MB, respectively.
+
+
+With these two experiments, we demonstrated the capability of \dd{}
+to dynamically manage two-levels of cache specifications in a
+dynamic manner. Policy decision at the hypervisor which effect
+VM-level cache partitioning and decisions that effect the
+per-container partition sizes for each VM can be handled by \dd{}
+in a dynamic manner. This feature is a key enabler to develop
+adaptive memory and cache management policies depending
+on application behavior, workloads and execution entity priorities.
+

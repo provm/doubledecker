@@ -1,0 +1,364 @@
+\section{Background and Motivation}
+\label{sec:bg}
+%The hypervisor cache can be used in many different ways in a virtualized
+%system~\cite{kvmzcache}.
+%
+With the Linux+KVM virtualization solution the page cache of the
+host operating system acts as an inclusive cache.
+%For example, page cache of the Linux host in a KVM virtualization platform 
+%can act as an inclusive cache in the disk IO access path.
+%
+Previous studies~\cite{kvmzcache,singleton} have shown that
+inclusive caching can be wasteful due to duplication of disk blocks 
+across the VMs and the host. 
+%
+In this paper, we focus on exclusive cache designs~\cite{memtrans} 
+like transcendent memory~\cite{memtrans} 
+where an symbiosis is proposed between 
+the page caches of virtual machines and the hypervisor managed
+second chance cache.
+%implemented in the hypervisor. 
+
+%\begin{figure}[t]
+%\centering
+%\begin{subfigure}[b]{0.35\textwidth}
+%\includegraphics[width=\textwidth]{images/cc_get}
+% \caption{Cache lookup of file block}
+%\vspace{0.25cm}
+% \label{fig:cc_get}
+%\end{subfigure}
+
+%\begin{subfigure}[b]{0.35\textwidth}
+%\includegraphics[width=\textwidth]{images/evict}
+% \caption{Cache eviction of a file block}
+% \label{fig:cc_evict}
+%\end{subfigure}
+
+%\caption{Operational view of second chance cache integration
+%         with page cache.}
+% \label{fig:cleanache_ops}
+%\end{figure}
+
+\subsection{Exclusive second chance caching}
+\label{subsec:hcache}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.4\textwidth]{images/cc_get}
+ \caption{Cache lookup of file blocks in the page cache-second chance
+cache integrated caching systems.}
+ \label{fig:cc_get}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+\includegraphics[width=0.4\textwidth]{images/tmem}
+ \caption{Overview of second chance cache integration with OS page cache 
+with exclusive mode of operation.}
+ \label{fig:scache}
+\end{figure}
+
+%
+%\puru{Three figures is a too much for a subsection of the background.
+%2a is the one to keep. Also 2a needs updates.}
+
+%In Figure~\ref{fig:scache}, architecture of exclusive second chance cache
+%is shown.
+%%
+%User space application initiated file IO requests are first looked up in the 
+%operating system page cache to serve the requests without performing disk IO.
+%%
+With an exclusive second chance cache, application initiated file IO
+requests are looked up in the operating system page cache.
+%
+On a page cache miss, the requests
+are queried (lookup operation) in the second-chance cache (Figure~\ref{fig:cc_get}).
+%
+The second chance cache interface is tightly integrated with the page cache layer
+and extends the IO path.
+%to perform disk block lookup in the second chance cache in case of a page cache
+%lookup failure.
+%
+When a clean disk block is evicted from page cache, a store operation is
+initiated through the second chance cache interface.
+%
+To maintain exclusivity between the two caches, a block evicted from the
+page cache is stored into the second chance cache and a block read from 
+the second chance cache is removed from the second chance cache
+and transferred to the page cache.
+
+%
+A generic second chance cache interface is implemented through 
+%an actual 
+%cache store implementation (Figure~\ref{fig:scache}) with choice of storage 
+a cache store implementation using a storage option
+(e.g., memory or SSD), storage optimizations (e.g., compression, deduplication) 
+and, cache management policies for eviction and cache partitioning.
+%
+Linux \cleancache~\cite{cleancache}, an abstract second chance cache 
+access interface, provides a generic second chance cache integration 
+framework with the page cache.
+%
+The key operations of the interface are:---lookup (\get)
+a disk block, store (\put)  a block in the cache and \flush{}
+to invalidate objects from the cache (refer to Figure~\ref{fig:scache}).
+%
+In a virtualized setup, where second chance cache is implemented in the hypervisor, 
+above operations ensure exclusive caching between the guest disk cache and
+the hypervisor cache.
+%
+Hypervisor managed caches interface with the guest OS second chance
+cache interface through hypervisor interfaces like hypercall (VMCALL)
+API (Figure~\ref{fig:scache}).
+%
+The second chance stores only clean pages evicted from the page cache
+and is indexed based on file system mount points or virtual machine
+identifiers, the file information and the block number.
+%
+Second chance cache implementations for native Linux and for
+different virtualization solutions 
+exist~\cite{zcache, oracletmem,kvmzcache, mortar}.
+%
+However, no state-of-the-art second chance cache solution
+supports application cognizant second chance cache management.
+%can be part of the operating system (e.g., \zcache{} in
+%the Linux OS~\cite{zcache}) or part of the hypervisor in a virtualized 
+%system~\cite{oracletmem,kvmzcache,mortar}. 
+%
+%
+%The block device interface is used as the last resort to access blocks from the disk
+%on cache lookup failure at both the page cache and the second chance cache.
+%
+%\subsubsection{Exclusive second chance cache operations}
+%\label{subsec:hcache}
+
+%Transcendent memory (or \tmem{})~\cite{oracletmem} is a state-of-the-art
+%hypervisor-managed cache which implements exclusive caching by
+%design~\cite{memtrans}.
+%
+%The \tmem{} cache stores \emph{clean} disk pages
+%does not contain dirty data at any
+%point in time 
+%and thus is transparent to storage durability mechanisms.
+%
+%An example hypervisor caching framework (illustrated in Figure~\ref{fig:tmem}) 
+%has three major components---(i) a guest OS \cleancache{} interface, (ii) a hypervisor 
+%managed back-end cache, and (iii) a hypervisor interface to access the cache.
+%
+%On a disk page lookup failure in the first chance cache (page cache),
+%second chance cache  lookup (a \get{} operation) is performed 
+%to {\em find-and-fetch} the requested block from the second chance cache 
+%onto the page cache as shown in Figure~\ref{fig:cc_get}.
+%%
+%If the block is not found in the second chance cache, a block IO request is
+%initiated to fetch the block from the block device.
+%
+%Similarly, when the page cache layer is requested to evict clean/unmodified cached 
+%disk blocks, the block is stored in the second chance cache (a.k.a \put{} operation)
+%(Figure~\ref{fig:cc_evict}). 
+%%
+%%For a dirty block eviction, second chance cache invalidate (\flush) operation
+%purges the page from the second chance cache, if present, since the second chance
+%cache version of the page is now outdated.
+%
+%
+
+%The unique key provided by the \cleancache{} abstract interface is a three 
+%tuple i.e., file system mount point ID (\texttt{pool-id}), 
+%file identifier (\texttt{inode number}) and the block offset of the requested 
+%file block.
+%%cache provides a key-value interface for storing page
+%%objects.
+%%
+%The second chance cache store is responsible for mapping these keys to actual
+%storage objects to implement \get, \put{} and \flush{} operations.
+%%
+%%The \texttt{pool-id} is negotiated during the file system initialization. 
+%
+%In a hypervisor cache implementation, the hypervisor cache is additionally responsible
+%to uniquely identify requests from different VMs which is typically ensured by extending the 
+%key with an additional \texttt{vm-id} element.
+
+\subsection{Application container isolation framework}
+%
+Light-weight resource isolation frameworks like Linux control 
+groups (\cgroup)~\cite{cgroup} provide performance isolation 
+across multiple execution domains with low virtualization 
+and multiplexing overheads compared to hypervisor enabled 
+system virtualization solutions.
+%machine level isolation solutions.
+%
+Linux \cgroup~\cite{cgroup} and FreeBSD jails~\cite{jail} are examples
+of performance isolation frameworks facilitating resource management 
+for a group of processes by specifying the group-level resource limits.
+%for different
+%resources e.g., CPU time, memory size, network and disk bandwidth etc..
+%
+%For example, to manage memory across \cgroups, two control knobs 
+%i.e., \texttt{hard limit} and \texttt{soft limit} are provided in Linux \cgroup{}
+%resource control model.
+%
+Using the process grouping based isolation model, container management
+solutions like LXC~\cite{lxc} and Docker~\cite{docker} enable hosting
+multiple applications in different application groups (containers).
+%
+
+%In a nested hosting system like derivative clouds, the two resource control 
+With derivative clouds, the two resource controllers---the hypervisor 
+and the \cgroup{}---operate in an agnostic manner w.r.t. each other.
+%
+As a result, the hypervisor cache distribution from the containers 
+perspective is not deterministic(\S\ref{subsec:motivation}).
+%is uncontrolled and arbitrary (\S\ref{subsec:motivation}).
+%
+To enable differentiated partitioning of the hypervisor cache and 
+to facilitate intelligent use of multiple storage backends across 
+containers, it is necessary to design a
+solution that can provide synergy across the two control points.
+%
+
+\subsection{Motivation}
+\label{subsec:motivation}
+%\begin{figure*}
+%\centering
+%\begin{subfigure}{0.5\columnwidth} 
+%\includegraphics[width=\columnwidth]{data/motivation/disparity_c1} 
+% \caption{Application container 1}
+% \label{fig:cachedistrib1} 
+%\end{subfigure} \hfill
+%
+%\begin{subfigure}{0.5\columnwidth}
+%\includegraphics[width=\columnwidth]{data/motivation/disparity_c2} 
+% \caption{Application container 2}
+% \label{fig:cachedistrib2} 
+%\end{subfigure} \hfill
+%
+%\begin{subfigure}{0.5\columnwidth}
+%\includegraphics[width=\columnwidth]{data/motivation/disparity1}
+% \caption{Application containers 1 and 2}
+% \label{fig:cachedistrib12} 
+%\end{subfigure} \hfill
+%
+%\begin{subfigure}{0.5\columnwidth}
+%\includegraphics[width=\columnwidth]{data/motivation/disparity2}
+% \caption{Application containers 1 and 2}
+% \label{fig:cachedistrib12_offset} 
+%\end{subfigure} \hfill
+%
+%\caption{Hypervisor cache distribution across two containers hosted inside a VM.}
+%\label{fig:cachedistrib}
+%\end{figure*}
+\begin{figure}
+\centering
+\begin{subfigure}{0.49\columnwidth} 
+\includegraphics[width=\columnwidth]{data/motivation/disparity_c1} 
+ \caption{Application container 1}
+ \label{fig:cachedistrib1} 
+\end{subfigure} \hfill
+%
+\begin{subfigure}{0.49\columnwidth}
+\includegraphics[width=\columnwidth]{data/motivation/disparity_c2} 
+ \caption{Application container 2}
+ \label{fig:cachedistrib2} 
+\end{subfigure} \hfill
+%
+\caption{Hypervisor cache distribution when application containers
+         executed separately.}
+\vspace{-0.3cm}
+\label{fig:separate}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\columnwidth]{data/motivation/disparity1}
+ \caption{Same start time}
+ \label{fig:cachedistrib12} 
+\end{subfigure} \hfill
+%
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\columnwidth]{data/motivation/disparity2}
+ \caption{Container 2 offset by 200 sec}
+ \label{fig:cachedistrib12_offset} 
+\end{subfigure} \hfill
+%
+%\caption{Hypervisor cache distribution when application containers
+%         executed simultaneous with different application start times.}
+\caption{Hypervisor cache distribution with different start times of
+application containers.}
+\label{fig:together}
+\end{figure}
+
+
+To demonstrate the non-deterministic cache distribution in a nested 
+container setup, we performed an experiment with a VM configured 
+with 2GB memory and 4 VCPUs on a host with 32GB memory and 16 CPUs.
+%
+The hypervisor cache 
+was not cognizant of the containers and its size was limited to 1GB.
+%was similar to Xen tmem~\cite{oracletmem} which
+% i.e., cache limit enforcement was on a per-VM basis.
+%
+%The maximum hypervisor cache limit was set to 1GB for this experiment.
+%
+Two application containers (Container 1 and Container 2) configured with 
+the same memory limits (through \cgroup) executed the \web-workload of the 
+\file~workload suite~\cite{filebench}.
+%
+The only difference between the two containers was their IO load; 
+Container 1 executed two
+\web~threads while Container 2 executed three \web-threads.
+%
+
+With this setup, when Container 1 and Container 2 executed separately one-at-a-time, 
+each of them used up the entire hypervisor cache (Figure~\ref{fig:separate}).
+%as shown in 
+%Figure~\ref{fig:cachedistrib1} and Figure~\ref{fig:cachedistrib2}, respectively.
+%
+The implication being that each application is capable of taking advantage 
+of the configured hypervisor cache to its capacity when executed separately.
+%
+%To show the non-deterministic cache distribution behavior, we performed an 
+%experiment with the same setup where both application containers shared the 
+%hypervisor cache during
+%the workload execution.
+%
+
+When both applications were started simultaneously,
+the hypervisor
+cache was distributed across containers in a disproportionate manner.
+%
+Share of Container 2 was approximately two times that of
+Container 1 as shown in Figure~\ref{fig:cachedistrib12}.
+%
+The non-determinism is a side-effect of the IO load and
+the FIFO-based global eviction policy (not ensuring container level fairness) 
+of the hypervisor cache.
+%
+%In another hypervisor cache sharing experiment (Figure~\ref{fig:cachedistrib12_offset}),
+%When Container 2 started executing its  workload after a delay of 200 seconds 
+%relativefrom 
+%that of container 1 application start time.  
+%
+%In this case, container 1 dominated the cache usage in initial part, after which
+Container 1 dominated the cache usage till about 500 seconds, after which
+cache share of container 2 increased before surpassing that of 
+Container 1 at around 600 seconds(Figure~\ref{fig:cachedistrib12_offset}),
+%
+%\puru{maybe we should add a table to compare performance with
+%deterministic cache sizing.}
+%These results demonstrate the non-determinism in cache distribution across 
+%application containers executing inside the VMs
+%, specifically in case of derivative 
+%cloud setups.
+%
+%Therefore, 
+These results demonstrate that state-of-the-art hypervisor caches are unable to
+implement policies (e.g., fair allocation to application containers) in a 
+deterministic manner at a sub-VM granularity.
+%
+To support differentiated policy enforcement in derivative cloud setups
+%at application 
+%granularity (e.g., application containers) in a nested setup 
+a rethink of the hypervisor cache design is required.    

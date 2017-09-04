@@ -1,0 +1,168 @@
+\section{Implementation}
+\label{sec:impl}
+\begin{figure}[t]
+  \centering
+\includegraphics[width=0.45\textwidth]{images/implementation} 
+ \caption{\dd{} implementation in KVM virtualized system. The shaded 
+ boxes in the figure represents modified/enhanced software components.}
+ \label{fig:impl} 
+\end{figure}
+
+We have implemented \dd{} in Linux KVM hypervisor platform.
+%
+The guest OS modifications are implemented in Linux VMs with LXC~\cite{lxc}
+containers.
+%
+Linux \texttt{cleancache}, second chance cache access interface is modified
+to implement the \cgroup{} extensions in the \dd{} hypervisor cache store.
+
+\subsection{\cgroup{} and \cleancache{} modifications}
+%
+Several modifications to the Linux \cgroup{} are required to allow 
+application container level hypervisor cache management.
+%
+Two new configuration parameters are provided to the \cgroup{} user space 
+(sysfs) configurations---(i) name or identification filter of the \cgroups{} for
+which the hypervisor cache is to be enabled, (ii) policy configuration tuple
+for each container to specify the storage type and weightage percentage.
+%
+Interactions between the \cgroup{} and the \cleancache{} interface
+occurs only if the \cgroup{} name matches the provided filter.
+%
+The newly introduced second chance operations and the events triggering those 
+are listed below.
+%
+
+\noindent
+{\bf CREATE\_CGROUP:} When a new container is created, the \cleancache{} interface 
+is notified of the event.
+%
+Linux \cleancache{} is extended to handle a container creation event and pass on
+this event to the hypervisor cache.
+%
+The hypervisor cache returns a new pool with an unique ID (\texttt{pool-id}) which
+is stored in the kernel \cgroup{} state corresponding to the container and used in
+subsequent hypervisor cache operations. 
+%
+
+\noindent
+{\bf SET\_CG\_WEIGHT:} The administrator changes the wight configurations---storage type or
+weightage percentage---for a container through the \cgroup{} sysfs user space interface.
+%
+The \cgroup{} weight change event is captured by the Linux kernel \cgroup{} module and 
+passed onto the \cleancache{} layer. 
+%
+The \cleancache{} layer passes on this operation to the hypervisor cache to reflect the
+configuration changes in the hypervisor cache store.
+%
+ 
+\noindent
+{\bf MIGRATE\_OBJECT:} Due to the transition from file system level key generation to 
+\cgroups, there could be subtle issues regarding mapping the file blocks to the application
+container.
+%
+Specifically, when \cgroup{} ownership for file blocks already present in the
+hypervisor cache store changes from one \cgroup{} to the other.
+%
+This can happen when some files are shared across application containers.
+%
+To handle this condition, the file blocks are migrated from one hypervisor cache 
+pool (corresponding to a container) to another.
+%
+
+\noindent
+{\bf DESTROY\_CGROUP:} When a container with a valid \texttt{pool-id} is shutdown, 
+the \cleancache{} interface is notified of the event.
+%
+Linux \cleancache{} is extended to handle a container destroy event and pass on
+this event to the hypervisor cache.
+%
+The hypervisor cache frees up all the objects corresponding to the pool 
+and marks the pool as free to be used in future.
+
+
+Existing \cleancache{} operations like lookup (\get), store (\put), invalidate (\flush)
+(refer \S\ref{sec:bg}) remain same in \dd{} implementation albeit with following modifications.
+%
+The page cache layer passes on a memory page with file inode number and block offset 
+to the \cleancache{} layer to enable second chance operations.
+%
+In vanilla \cleancache{} implementation, there was an one-to-one correspondence between
+\texttt{pool-id} and file system superblock which can be extracted in a trivial manner
+to carry out the above operations.
+%
+In \dd{}, the \cgroup{} owner is first deduced from the memory page to determine the 
+unique \texttt{pool-id}.  
+
+Linux \cleancache{} operations are routed to the KVM hypervisor through a newly
+introduced VMCALL~\cite{intelmanual}.
+%
+The KVM hypervisor module is modified to capture this hypercall, copy the arguments
+on to the host memory and pass the call to the \dd{} cache store
+module. 
+
+\subsection{\dd{} hypervisor cache store}
+\begin{figure}[t]
+  \centering
+\includegraphics[width=0.4\textwidth]{images/ddecker} 
+ \caption{\dd{} hypervisor cache store components.}
+ \label{fig:cachestore} 
+\end{figure}
+%
+High-level design of \dd{} hypervisor cache store implementation 
+is shown in Figure~\ref{fig:cachestore}.
+%
+The cache access interface is the entry point for all calls from the guest VMs
+and configuration changes by the host administrator.
+%
+
+The host administrator may configure the memory size limits and SSD device 
+limits for the \dd{} cache store which is handled by the
+policy module.
+%
+Further, container level configurations explained before is
+delegated to to the policy module for cache management. 
+%
+On any configuration change, the policy module recalculates cache store
+entitlements at two levels---per-VM level and container (pool) level.
+%
+The policy module monitors \dd{} cache usage by the VMs and containers and
+takes appropriate action (e.g., eviction) when the cache entitlement is
+violated.
+%
+In our implementation, FIFO is used to implement eviction at a pool level.
+
+The indexing module is responsible for implementing normal second chance 
+cache operations like lookup (\get), store (\put) etc..
+% 
+The key consisting of three tuples provided by the VM 
+($<$\texttt{pool-id}{}$>$, $<$\texttt{inode-num}{}$>$, $<$\texttt{block-offset}{}$>$)
+along with VM ID is used to map the request to storage objects.
+%
+A hierarchy of indexing data structures---per-pool file object (\texttt{inode-num}) hash 
+table, file block radix-tree etc.---are used to map the key to a storage
+object.
+%
+The opaque storage object is exchanged with the storage module
+for actual storage operations.   
+%
+On a \put{} request, the indexing module enforces the limits by
+checking the pool entitlement and evicting through the policy module,
+if necessary.
+
+
+Storage module provides backend independent services to 
+read storage blocks, allocate new storage blocks and free storage blocks.
+%
+In the current \dd{} implementation, two types of storage backends are
+implemented.
+%
+For memory storage backend, Linux kernel routines like \texttt{page\_alloc},
+\texttt{page\_free}, \texttt{memcpy} etc. are used.
+%
+For SSD backend implementation, we have implemented a raw block device 
+IO layer on top of the generic block device driver interface. 
+%
+The read calls (for \get{} operations) implements synchronous IO
+operations while write calls (for \put{} operations) are implemented in an
+asynchronous manner.

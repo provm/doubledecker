@@ -1,0 +1,84 @@
+\section{Related work}
+\label{sec:related}
+\noindent
+{\bf Hypervisor caching:} Hosted virtualization solution like 
+KVM~\cite{kvm, kvmconfig} naturally offer hypervisor 
+caching by being in the disk access path.
+%
+Singleton~\cite{singleton} performs cache translation of the
+hypervisor cache to provide exclusive caching in an indirect 
+manner.
+%
+Transcendent memory~\cite{memtrans} proposed guest OS supported
+exclusive caching framework which is first implemented in Xen~\cite{oracletmem}.
+%  
+Compressed exclusive hypervisor cache for KVM ~\cite{kvmzcache} based on the 
+transcendent memory model enabled several caching combination is comparatively
+analyzed to study the effectiveness of the hypervisor caching solutions.
+%  
+All the above solutions provide hypervisor cache management capability
+at a VM granularity whereas \dd{} extends the framework to support application
+level differentiated hypervisor cache partitioning like for
+application containers hosted inside the VMs.
+%
+Mortar~\cite{mortar} exposed hypervisor cache to distributed memory store 
+applications like \texttt{memcached} by modifying the application in an
+explicit manner.
+%
+Our approach is more generic and does not require any modification to the 
+applications.
+%
+Software defined caching (SDC)~\cite{sdc} proposed application SLA guided 
+dynamic second chance cache provisioning in a multi-hosting setup.
+%
+\dd{} provides more flexibility in terms of hypervisor cache provisioning
+by providing different second chance storage options.
+%
+Moreover, while SDC is proposed for multi-VM setups, we believe 
+it is in-principle applicable to application containers;
+we provide a realization of the same. 
+
+\noindent
+{\bf Application containers and derivative clouds:} Linux \cgroups~\cite{cgroup},
+BSD jail~\cite{jail} and Solaris Zones~\cite{zone} provide operating system 
+level isolation support for different applications.
+%  
+LXC~\cite{lxc} and Docker~\cite{docker} are two popular application container
+enablers built by exploiting the Linux \cgroup{} resource control frameworks.
+%
+Nested virtualization~\cite{turtle,blanket} enables hosting VMs inside a VM
+by exposing hardware virtualization features to the first level VM.
+%
+The goal of nested virtualization has been to address security issues,
+VM standardization related problems and hypervisor trouble-shooting. 
+%
+Resource management by using nested virtualization has been proposed 
+by inter-clouds~\cite{intercloud} and super-cloud~\cite{supercloud}.
+%
+Derivative clouds in the current era~\cite{spotcheck, heroku, picloud} use 
+containers inside the VMs as the IaaS primitive because virtualization 
+overheads using containers is significantly lower than full VM virtualization.
+%
+\dd{} enhances the provisioning flexibility through hypervisor cache management
+at the nested container level and opens up business model enhancements for 
+derivative cloud.
+
+
+\noindent
+{\bf Memory management in virtualized systems:} Memory 
+ballooning~\cite{vmware,hotplug} facilitates dynamic adjustment of VM memory  
+allocations.
+%
+Several dynamic balloon controllers estimate and adjust the memory 
+allocation to the VMs~\cite{wss, membal, tws}.
+%
+Hypervisor caching and \dd{} complements the dynamic memory controllers
+by providing symbiotic resource management capabilities.
+%
+Memory deduplication~\cite{vmware,ksmpaper,satori} is another memory
+efficiency enhancement technique shown to be useful in virtualized
+systems~\cite{ksmpaper,utc}.   
+%
+Integration of \dd{} with deduplication to enhance the memory management
+efficiency in a derivative cloud setup would be an interesting future
+direction of our work.

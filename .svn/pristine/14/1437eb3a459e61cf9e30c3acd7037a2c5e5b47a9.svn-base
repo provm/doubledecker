@@ -1,0 +1,61 @@
+\documentclass[conference]{IEEEtran}
+
+\ifCLASSINFOpdf
+   \usepackage[pdftex]{graphicx}
+\fi
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{color}
+\usepackage{ifthen}
+\captionsetup[table]{skip=10pt}
+\setlength{\belowcaptionskip}{-1ex}
+
+\newcommand{\tmem}{\textrm{tmem}}
+\newcommand{\get}{\textrm{get}}
+\renewcommand{\put}{\textrm{put}}
+\newcommand{\flush}{\textrm{flush}}
+\newcommand{\cleancache}{\textrm{cleancache}}
+\newcommand{\gh}{\textrm{G-H}}
+\newcommand{\dd} {\textrm{DoubleDecker}}
+\newcommand{\web} {\textrm{Webserver}}
+\newcommand{\proxy} {\textrm{Proxycache}}
+\newcommand{\mail} {\textrm{Varmail}}
+\newcommand{\video} {\textrm{Videoserver}}
+\newcommand{\file} {\textrm{Filebench}}
+\newcommand{\zcache} {\textrm{zcache}}
+\newcommand{\cgroup} {\textrm{Cgroup}}
+\newcommand{\cgroups} {\textrm{Cgroups}}
+
+\newcommand{\puru}[1]{\textcolor{magenta}{[Puru: #1]}}
+\newcommand{\deba}[1]{\textcolor{red}{[Deba: #1]}}
+\sloppy
+
+\begin{document}
+
+
+\title{DoubleDecker: Differentiated Hypervisor Caching for Derivative Clouds}
+ \author{\IEEEauthorblockN{Debadatta Mishra and Purushottam Kulkarni}
+ \IEEEauthorblockA{Department of Computer Science and Engineering\\
+ Indian Institute of Technology Bombay, Mumbai\\
+ e-mail:\{deba, puru\}@cse.iitb.ac.in}
+ }
+\maketitle
+
+
+\input{abstract}
+\input{intro.tex}
+\input{background.tex}
+\input{design.tex}
+\input{implementation.tex}
+\input{evaluation.tex}
+\input{related_work.tex}
+\input{conclusion.tex}
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,ddecker}
+\end{document}

@@ -1,0 +1,121 @@
+Start 
+gets:10510 sgets:0 puts:0 flushes:0 evicts:0
+=======APPLICATION OUTPUT==========
+========== Container 1 Memory STATS ==============
+cache 8028160
+rss 6709248
+rss_huge 0
+mapped_file 7946240
+writeback 0
+pgpgin 79257
+pgpgout 75659
+pgfault 178095
+pgmajfault 184
+inactive_anon 69632
+active_anon 6709248
+inactive_file 3579904
+active_file 4378624
+unevictable 0
+hierarchical_memory_limit 999997440
+total_cache 8028160
+total_rss 6709248
+total_rss_huge 0
+total_mapped_file 7946240
+total_writeback 0
+total_pgpgin 79257
+total_pgpgout 75659
+total_pgfault 178095
+total_pgmajfault 184
+total_inactive_anon 69632
+total_active_anon 6709248
+total_inactive_file 3579904
+total_active_file 4378624
+total_unevictable 0
+======== END Container STATS ======
+WARNING: Could not open /proc/sys/kernel/shmmax file!
+It means that you probably ran Filebench not as a root. Filebench will not increase shared
+region limits in this case, which can lead to the failures on certain workloads.
+Filebench Version 1.4.9.1
+ 1872: 0.000: Allocated 170MB of shared memory
+ 1872: 0.037: Web-server Version 3.0 personality successfully loaded
+ 1872: 0.038: Creating/pre-allocating files and filesets
+ 1872: 0.085: Fileset logfiles: 1 files, 0 leafdirs, avg dir width = 20, avg dir depth = 0.0, 0.008MB
+ 1872: 0.085: Re-using fileset logfiles.
+ 1872: 0.085: Creating fileset logfiles...
+ 1872: 4.245: Preallocated 1 of 1 of fileset logfiles in 5 seconds
+ 1872: 4.264: Fileset bigfileset: 25000 files, 0 leafdirs, avg dir width = 20, avg dir depth = 3.4, 1557.267MB
+ 1872: 4.264: Re-using fileset bigfileset.
+ 1872: 4.264: Creating fileset bigfileset...
+ 1872: 11.675: Preallocated 25000 of 25000 of fileset bigfileset in 8 seconds
+ 1872: 11.675: waiting for fileset pre-allocation to finish
+26876: 12.682: Starting 1 filereader instances
+26877: 12.707: Starting 8 filereaderthread threads
+ 1872: 13.911: Running...
+ 1872: 1814.102: Run took 1800 seconds...
+ 1872: 1814.986: Per-Operation Breakdown
+appendlog            287876ops      160ops/s   1.2mb/s      1.7ms/op      376us/op-cpu [0ms - 2058ms]
+closefile10          287868ops      160ops/s   0.0mb/s      0.0ms/op      244us/op-cpu [0ms - 3ms]
+readfile10           287868ops      160ops/s  10.0mb/s      2.8ms/op      396us/op-cpu [0ms - 2098ms]
+openfile10           287869ops      160ops/s   0.0mb/s      0.0ms/op      245us/op-cpu [0ms - 836ms]
+closefile9           287870ops      160ops/s   0.0mb/s      0.0ms/op      251us/op-cpu [0ms - 30ms]
+readfile9            287871ops      160ops/s   9.9mb/s      2.9ms/op      400us/op-cpu [0ms - 2339ms]
+openfile9            287872ops      160ops/s   0.0mb/s      0.0ms/op      243us/op-cpu [0ms - 843ms]
+closefile8           287872ops      160ops/s   0.0mb/s      0.0ms/op      249us/op-cpu [0ms - 11ms]
+readfile8            287872ops      160ops/s  10.0mb/s      2.8ms/op      404us/op-cpu [0ms - 2169ms]
+openfile8            287872ops      160ops/s   0.0mb/s      0.0ms/op      240us/op-cpu [0ms - 1016ms]
+closefile7           287872ops      160ops/s   0.0mb/s      0.0ms/op      249us/op-cpu [0ms - 12ms]
+readfile7            287872ops      160ops/s   9.9mb/s      2.9ms/op      394us/op-cpu [0ms - 1641ms]
+openfile7            287872ops      160ops/s   0.0mb/s      0.0ms/op      247us/op-cpu [0ms - 512ms]
+closefile6           287873ops      160ops/s   0.0mb/s      0.0ms/op      251us/op-cpu [0ms - 29ms]
+readfile6            287873ops      160ops/s  10.0mb/s      3.0ms/op      395us/op-cpu [0ms - 1941ms]
+openfile6            287873ops      160ops/s   0.0mb/s      0.0ms/op      242us/op-cpu [0ms - 844ms]
+closefile5           287875ops      160ops/s   0.0mb/s      0.0ms/op      253us/op-cpu [0ms - 28ms]
+readfile5            287875ops      160ops/s  10.0mb/s      2.9ms/op      396us/op-cpu [0ms - 2157ms]
+openfile5            287875ops      160ops/s   0.0mb/s      0.0ms/op      240us/op-cpu [0ms - 793ms]
+closefile4           287875ops      160ops/s   0.0mb/s      0.0ms/op      249us/op-cpu [0ms - 19ms]
+readfile4            287875ops      160ops/s  10.0mb/s      2.9ms/op      395us/op-cpu [0ms - 1943ms]
+openfile4            287875ops      160ops/s   0.0mb/s      0.0ms/op      240us/op-cpu [0ms - 844ms]
+closefile3           287875ops      160ops/s   0.0mb/s      0.0ms/op      251us/op-cpu [0ms - 8ms]
+readfile3            287875ops      160ops/s  10.0mb/s      2.9ms/op      395us/op-cpu [0ms - 2047ms]
+openfile3            287875ops      160ops/s   0.0mb/s      0.0ms/op      242us/op-cpu [0ms - 581ms]
+closefile2           287875ops      160ops/s   0.0mb/s      0.0ms/op      248us/op-cpu [0ms - 24ms]
+readfile2            287875ops      160ops/s  10.0mb/s      3.0ms/op      394us/op-cpu [0ms - 2335ms]
+openfile2            287876ops      160ops/s   0.0mb/s      0.0ms/op      243us/op-cpu [0ms - 844ms]
+closefile1           287876ops      160ops/s   0.0mb/s      0.0ms/op      250us/op-cpu [0ms - 26ms]
+readfile1            287876ops      160ops/s  10.0mb/s      3.0ms/op      395us/op-cpu [0ms - 2187ms]
+openfile1            287876ops      160ops/s   0.0mb/s      0.0ms/op      231us/op-cpu [0ms - 683ms]
+ 1872: 1814.986: IO Summary: 8924074 ops, 4957.309 ops/s, (1599/160 r/w), 100.9mb/s,    195us cpu/op,   2.8ms latency
+ 1872: 1814.986: Shutting down processes
+========== Container 1 Memory STATS AT END ==============
+cache 1157226496
+rss 6713344
+rss_huge 0
+mapped_file 2170880
+writeback 0
+pgpgin 65944078
+pgpgout 65660935
+pgfault 18226130
+pgmajfault 2552
+inactive_anon 6680576
+active_anon 102400
+inactive_file 578781184
+active_file 578375680
+unevictable 0
+hierarchical_memory_limit 1249996800
+total_cache 1157226496
+total_rss 6713344
+total_rss_huge 0
+total_mapped_file 2170880
+total_writeback 0
+total_pgpgin 65944078
+total_pgpgout 65660935
+total_pgfault 18226130
+total_pgmajfault 2552
+total_inactive_anon 6680576
+total_active_anon 102400
+total_inactive_file 578781184
+total_active_file 578375680
+total_unevictable 0
+======== END Container STATS ======
+=======END==========
+gets:47427149 sgets:47006187 puts:47141269 flushes:0 evicts:0

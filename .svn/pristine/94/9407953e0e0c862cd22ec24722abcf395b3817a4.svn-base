@@ -1,0 +1,134 @@
+\section{Design and Architecture}
+\label{sec:design}
+
+\begin{figure}[t]
+  \centering
+\includegraphics[width=0.45\textwidth]{images/arch} 
+ \caption{Proposed differentiated hypervisor cache partitioning 
+          across containers in a nested virtualization setting.}
+ \label{fig:desired} 
+\end{figure}
+
+\dd{} solution framework for container aware hypervisor caching
+with multi-layered differentiated cache partitioning and management
+is presented in Figure~\ref{fig:desired}.
+%
+To configure and manage hypervisor cache, two policy control interfaces provided in 
+the proposed design---(i) VM level policy configuration by the hypervisor, (ii) Container
+level policy specification by the VM administrator. 
+%
+The VM level policy is specified in relative weights of the VMs using which
+the hypervisor cache is partitioned across the VMs.  
+%
+Container level policy is specified by a two tuple for each VM---(i) T: cache store type,
+(ii) W: cache usage percentage.
+%
+Cache store type (T) in the proposed architecture is to provide support for multiple types of
+cache stores which can be queried from the VMs and every container can be configured
+with storage backend type as dictated by the policy.
+%
+
+In the example setup shown in Figure~\ref{fig:desired}, 
+there are two VMs---VM1 and VM2---configured with weightage
+ratio of 1:2 by the hypervisor.
+%
+Two and three application containers are instantiated in VM1 and VM2,
+respectively.
+%
+Each VM administrator can use the policy interface to
+specify the weights for each container's hypervisor cache share.
+%
+In this case, Container 1 and Container 2 of VM1 are configured to use the 
+VM's share of SSD and memory backed cache store, respectively.
+%
+%
+Container 1 and Container 2 of VM2 are configured with memory backed 
+hypervisor cache with usage percentages as 25 and 75, respectively. 
+%
+Container 3 of VM2 is configured to used SSD backed cache store.
+%
+As shown in the Figure~\ref{fig:desired}, hypervisor cache gets
+distributed depending on the configured weightages at two levels---between
+VMs and across containers within each VM.
+%
+Hypervisor memory store is shared by three containers---Container 2 of VM1 and,
+Container 1 and Container 2 of VM2---in the proportions derived by first applying
+relative VM weightage and next by applying container share limits within each VM's
+share.  
+%
+Similarly, SSD backed hypervisor cache is shared by Container 1 of VM1 and Container
+3 of VM2 in the ratio of the relative priorities of the VMs.
+%
+Different components in the proposed design are explained further.
+
+\subsection{Policy control mechanism}
+\cgroup{} resource control framework provides configuration options to
+configure several resource limits like CPU share, memory usage limit etc.
+per-cgroup.
+%
+\dd{} policy controller requires specification of hypervisor cache storage type
+and the cache usage percentage.
+%
+So, an extension of \cgroup{} resource control framework is warranted to 
+incorporate the additional configurability related to hypervisor caching.
+%
+Container resource control through \cgroups{} should support dynamic
+specification of the policy and propagation of the same to the hypervisor 
+cache store.
+%
+Interfacing of the \cgroup{} resource control framework with the hypervisor cache
+interface requires redesign of the hypervisor cache interface.
+
+\subsection{Hypervisor cache interface}
+The hypervisor cache interface (explained in \S\ref{sec:bg}) assigns unique pool 
+IDs to each file system which is used for second chance cache operations
+like \get, \put{} and \flush. 
+%
+In the proposed system, many containers can be instantiated within one file system,
+which implies file system IDs can not be used as an identification for 
+containers.
+%
+This fundamental change require redesign of the interface in such a manner that
+each application container uses an unique identity which is assigned by the hypervisor 
+cache store.
+%
+When an application container boots up, the hypervisor cache interface 
+requests a new pool ID from the hypervisor cache store and assigns the pool ID
+to the application container for its life time.
+%
+Subsequent second chance cache access requests originating because of page cache
+look up failures or evictions in the guest OS is accompanied by the unique 
+pool ID.
+%
+The unique pool ID is derived by determining the owner container for the 
+operation.
+%
+For example, a second chance lookup (\get) request for a file block is first mapped
+to the application container responsible for this lookup to derive the pool ID and pass it 
+on to the hypervisor cache store.
+%
+%
+\subsection{Hypervisor cache store}
+%
+The cache store implementation of \dd{} hypervisor cache store is required to
+support container level policies apart from providing VM level cache partitioning
+facilities.
+%
+The VM level cache partition sizes are derived from administrator configured
+weightages.
+%
+To apply application container level policies, the policy configuration
+for containers are delegated to the hypervisor cache.
+%
+As mentioned earlier, every application container is assigned an unique
+pool ID on start up.
+%
+The hypervisor cache store applies the configured policies to partition the
+cache share across the pools.
+%
+\dd{} hypervisor cache store provides backend storage implementation using 
+memory and SSD.
+%
+Depending on memory type configuration for the containers, the requests
+are stored either in the memory store or the SSD store.
+%
