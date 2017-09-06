@@ -48,13 +48,29 @@ management in virtualized systems.
 %
 While these techniques and associated policies have been studied
 extensively in virtualization setups~\cite{vmware, membal, membud, kvmzcache, tws},
-they have not been studied in \emph{nested hosting} setups, or
-what we refer to as \emph{derivative clouds}.
+they have not been studied in \emph{nested hosting} setups.
+\revised{
+The central proposition of this work is that resource management
+techniques employed with single-level virtualization setups
+are inadequate in the context of nested-hosting setups 
+and require augmentation and re-design.}
+
+\revised{
+Additional overheads due to nested virtualization layers~\cite{blanket,turtle}
+has been one of the primary bottlenecks in realizing sub-tenancy
+models in cloud computing. 
 %
-A \emph{derivative cloud} is a nested setup, virtual machines
-nested in virtual machines~\cite{blanket} or containers deployed in 
-virtual machine~\cite{spotcheck, google}, 
-the latter being the focus of this work.
+%Resource provisioning issues in nested settings gained less attention 
+%because of the additional virtualization overheads~\cite{blanker,turtule} 
+%in nested virtualization solutions discouraged its usage for enabling 
+%cloud infrastructure services.
+%
+Provisioning of one or more application containers inside VMs, 
+a recently popular nested hosting technique, has promising potential considering 
+low virtualization overheads (compared to VM within VM) it offers~\cite{middleware16,vmw-docker}. 
+%
+Containers inside VMs enable subletting business models like \emph{derivative cloud} 
+model~\cite{spotcheck, google} which is the focus of this work.
 %
 In the derivative model, an intermediate service provider builds
 her own service offering on top of service she rents, buys or leases.
@@ -63,11 +79,17 @@ The services themselves could be smaller sized versions of the
 first-level service or could be applications and in general host
 other software-as-a-service or platform-as-a-service variants.
 %
-From the resource management perspective, with container based
+From the memory management perspective, with container based
 derivative clouds, the container-based nested services
 are provisioned and managed from within a virtual machine
 and resources for virtual machines are managed by the 
 hypervisor-level policy tools.
+%
+The notion of two isolated resource management entities with 
+different levels of visibility into their respective managed 
+components---containers at virtual machine level and VMs at the
+hypervisor level, require careful analysis of design alternatives. 
+}
 %
 %Containers are provisioned and managed by the VM administrators,
 %who may want to employ higher level QoS policies in terms of priority or
@@ -79,18 +101,15 @@ hypervisor-level policy tools.
 %{\em Derivative clouds}~\cite{spotcheck,google}, enables hosting 
 %application containers inside VMs.
 %
-The central proposition of this work is that resource management
-techniques employed with single-level virtualization setups
-are inadequate in the context of derivative clouds 
-and require augmentation and re-design.
 %ballooning, deduplication and hypervisor caching is required to be 
 %to analyze
 %effectiveness in a nested virtualization setup.
 %nested virtualization framework to analyze their 
 %
 
-In this work, our focus is the use of hypervisor caching for
-effective disk cache memory management in derivative clouds.
+\revised{
+%In this work, our focus is the use of hypervisor caching for
+%effective disk cache memory management in derivative clouds.
 %the focus is to explore the hypervisor caching solution space 
 %in nested hosting setups (containers inside VMs) and work out suitable 
 %enhancements to enable efficient hypervisor caching for nested application 
@@ -99,9 +118,12 @@ effective disk cache memory management in derivative clouds.
 %Memory used to cache disk content (a.k.a. page cache) can be
 %a major bottleneck for efficient memory management in virtualized
 %systems.
+Memory used to cache disk content is a significant part of the 
+system memory and its management in multi-hosting setups is
+non-trivial.  
 %
-Utility of a disk cache depends on application access behavior,
-e.g., access patterns (sequential vs. random) and read-write ratios.
+%Utility of a disk cache depends on application access behavior,
+%e.g., access patterns (sequential vs. random) and read-write ratios.
 %
 Best effort disk caches employed by operating systems greedily consume
 all available free memory in the system (virtual machine in this case) 
@@ -112,6 +134,7 @@ Further, disk cache management decisions of a guest OS are
 localized to the virtual machine and are oblivious to memory 
 usage and disk cache utility 
 across the virtual machines hosted on the same physical machine.
+}
 %
 %So, in a multi-hosting system, memory used to cache disk content 
 %by applications (or operating systems), if managed
@@ -228,11 +251,31 @@ For example, a VM-level policy has the flexibility to meet
 application performance by provisioning in-VM memory and the
 hypervisor cache resources.  
 %
-We design techniques to address the above requirements
-to provide nested container level differentiation for
-hypervisor cache management with nested policy enforcement
-capability. 
+\revised{
+Our proposed solution addresses the above requirements 
+through synergistic extensions in the guest OS
+and the hypervisor. 
 %
+We believe effectiveness of black-box techniques, as an alternate
+solution approach, would be bottlenecked because of two
+primary factors.
+%
+First, it would require virtual machine transparent mechanisms to
+identify different containers and their memory usage behaviors.
+%
+Second, influencing guest OS memory management can be performed
+in an indirect manner (if at all) which may not be as effective.
+%
+Moreover, given the struggle of black-box techniques 
+to meet dynamic resource demands even in non-nested settings~\cite{vmware,membal}, 
+we preferred a cooperative approach to address the above 
+resource management requirements. 
+%We design techniques to address the above requirements
+%to provide nested container level differentiation for
+%hypervisor cache management with nested policy enforcement
+%capability. 
+%
+}
 
 %
 %A derivative cloud that hosts
