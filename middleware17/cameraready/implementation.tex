@@ -42,7 +42,7 @@ state description of the \cgroups{} subsystem---
 which the hypervisor cache is to be enabled, 
 (ii) policy configuration tuple ($<$\texttt{T, W}$>$) for each container 
 to specify 
-the storage type and weightage percentage.
+the storage type and weight percentage.
 %\puru{what is identification filter?.}
 %
 These parameters can be accessed as \texttt{sysfs} entries 
@@ -87,7 +87,7 @@ hypervisor cache operations.
 %
 This event is generated when the \cgroup{} sysfs entry is updated 
 (due to policy control decision) to update the container hypervisor
-cache specifications---the storage type and weightage percentage.
+cache specifications---the storage type and \revised{weight} percentage.
 %\puru{need to make consistent---weight vs. ratios.}
 %
 Update to the \cgroup{} variables is captured by Linux 
@@ -208,7 +208,11 @@ violated.
 %
 In the current implementation, FIFO is used (LRU equivalent for exclusive caches)
 to implement eviction at a pool level.
-
+%
+\revised{
+As part of the future work, we plan to evaluate different eviction policies
+similar to ExTmem~\cite{extmem} and provide it as a configurable option for 
+the VM-level policy controller.}
  
 %
 
@@ -263,7 +267,7 @@ asynchronous manner.
           \State \textit{E$_i$} = \textit{Entities[i]}
           \If {\textit{E$_i$.entitlement} $<$ \textit{E$_i$.used + EvictionSize}} 
                  \State \textit{overusedlist[count]} = \textit{E$_i$}
-                 \State \textit{cumlweight} += \textit{E$_i$.weightage}
+                 \State \textit{cumlweight} += \textit{E$_i$.weight}
                  \State \textit{count++}
           \EndIf
           \If {\textit{E$_i$.entitlement}-\textit{E$_i$.used}$>$2$*$\textit{EvictionSize}}
@@ -300,23 +304,23 @@ The algorithm takes list of entities (VMs or Containers) and eviction size
 as input to return the victim entity.
 %
 List of entities who are over the limit of their entitlement---calculated directly
-applying the \dd{} cache weightage configuration---are determined (line\# 8-12) and
+applying the \dd{} cache weight configuration---are determined (line\# 8-12) and
 stored in the \textit{overusedlist}.  
 %
 Sum of underutilized memory (\textit{underusedbuf}) is redistributed among
-the entities as per their weightages to calculate their effective entitlements 
-(\textit{E.entitlement} + (\textit{b} * \textit{E.weightage} / \textit{cw}))
-and exceed values .
+the entities as per their \revised{weights} to calculate their effective entitlements 
+(\textit{E.entitlement} + (\textit{b} * \textit{E.weight} / \textit{cw}))
+and exceed values.
 %
 The exceed value for an entity is calculated as,
 \begin{equation}
 \begin{aligned}
 exceed(\textit{E}, \textit{b}, \textit{cw}) = \textit{E.used} + \textit{EvictionSize} - \\
-                                              (\textit{E.entitlement} + (\textit{b} * \textit{E.weightage} / \textit{cw}))
+                                              (\textit{E.entitlement} + (\textit{b} * \textit{E.weight} / \textit{cw}))
 \end{aligned}
 \end{equation}
 where \textit{b} is the sum of under utilized entitlements (\textit{underusedbuf} in
-Algorithm~\ref{algo:evict}), \textit{cw} is the sum of weightage percentage of entities whose cache
+Algorithm~\ref{algo:evict}), \textit{cw} is the sum of weight percentages of entities whose cache
 usage is above their respective entitlements.
 %
 The entity calculated with the highest exceed value is selected as the 
