@@ -3,20 +3,39 @@
 %The hypervisor cache can be used in many different ways in a virtualized
 %system~\cite{kvmzcache}.
 %
-With the Linux+KVM virtualization solution page cache of the
-host operating system acts as an inclusive cache.
+\revised{
+Hypervisor caching is an efficient memory management technique 
+to manage memory used to cache disk content  
+in virtualized systems. 
+%
+%With the Linux+KVM virtualization solution page cache of the
+%host operating system acts as an inclusive (hypervisor) cache.
+}
 %For example, page cache of the Linux host in a KVM virtualization platform 
 %can act as an inclusive cache in the disk IO access path.
 %
 Previous studies~\cite{kvmzcache,singleton} have shown that
-inclusive caching can be wasteful due to duplication of disk blocks 
-across the VMs and the host. 
+inclusive hypervisor caching can be wasteful due to duplication of disk blocks 
+across the VMs and the hypervisor. 
 %
-In this paper, we focus on exclusive cache designs~\cite{memtrans} 
-like transcendent memory~\cite{memtrans} 
-where a symbiosis is proposed between 
-the page caches of virtual machines and the hypervisor managed
-second chance cache.
+\revised{
+In this paper, we focus on exclusive cache designs 
+like transcendent memory~\cite{memtrans} where a symbiosis is proposed
+between the guest OS and the hypervisor to achieve exclusive caching
+across page caches of virtual machines and hypervisor managed second 
+chance caches.
+%
+In order to meet decentralized memory management 
+requirements with heterogeneous memory systems (e.g., NVM) in derivative cloud
+setups, we propose to augment existing cooperation between the guest OS 
+and the hypervisor. 
+%to incorporate decentralized memory management requirements
+%of derivative cloud setups.
+% 
+%where a symbiosis is proposed between 
+%the page caches of virtual machines and the hypervisor managed
+%second chance cache.
+}
 %implemented in the hypervisor. 
 
 %\begin{figure}[t]
@@ -336,8 +355,12 @@ When both applications were started simultaneously,
 the hypervisor
 cache was distributed across containers in a disproportionate manner.
 %
+\revised{
 Share of Container 2 was approximately two times that of
 Container 1 as shown in Figure~\ref{fig:cachedistrib12}.
+%
+\web~workload throughput executing in Container 2 was $\sim$1.8 times that
+of Container 1.}
 %
 The non-determinism is a side-effect of the IO load and
 the FIFO-based global eviction policy (not ensuring container level fairness) 
@@ -351,7 +374,7 @@ form start of workload in Container 1,
 %In this case, container 1 dominated the cache usage in initial part, after which
 Container 1 dominated the cache usage till about 500 seconds, after which
 cache share of Container 2 increased before surpassing that of 
-Container 1 at around 600 seconds(Figure~\ref{fig:cachedistrib12_offset}).
+Container 1 at around 600 seconds (Figure~\ref{fig:cachedistrib12_offset}).
 %
 %\puru{maybe we should add a table to compare performance with
 %deterministic cache sizing.}
@@ -378,8 +401,19 @@ deterministic manner at a sub-VM granularity.
  \label{fig:app_behavior} 
 \end{figure}
 %
-To analyze the impact of memory provisioning at the two 
-levels (guest OS and hypervisor cache) in a nested setup and motivate the need for 
+\revised{
+%Memory management in derivative cloud settings should 
+%efficiently handle dynamic levels of hypervisor cache.  
+%
+As shown before, not having the capability of in-VM
+application distinction at the hypervisor cache level
+can have detrimental effect on differentiated policy design.
+%
+Further, having policy control only at the hypervisor level even with
+application distinction capability may not be sufficient.}
+%To analyze the impact of memory provisioning at the two 
+%levels (guest OS and hypervisor cache) in a nested setup and 
+To motivate the need for 
 guest OS control on the hypervisor cache sizing, we performed the 
 following experiment.
 %
@@ -437,10 +471,15 @@ For applications depending on file I/O, hypervisor cache
 can offload the caching responsibility without causing any
 application degradation.
 %
+\revised{
 These results show that providing the VM level memory manager with the option
 to choose different cache and in-VM memory configurations provides flexibility
 to meet various application SLA objectives.
-
+%
+Further, in a dynamic setting, choice of different hypervisor 
+cache storage options (memory and SSD) at the VM level enhances
+the policy design space as shown in \S\ref{subsec:flex}. 
+}
  
 %
 %Hypervisor caching solutions with application level differentiated 
@@ -473,11 +512,13 @@ hosted on different virtual disks so that they can be distinguished at the
 hypervisor level.
 %
 
-
+\revised{
 %
 To support differentiated policy enforcement in derivative cloud setups
 at the nested levels, a rethink of the hypervisor cache design is required.    
 %
-The proposed design should allow independent memory management at the two 
-nested levels with the hypervisor still being the enforcing entity. 
+Exploiting the existing cooperation semantics, the proposed design should 
+allow independent memory management at the two nested levels with the 
+hypervisor still being the enforcing entity. 
 %
+}
