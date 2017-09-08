@@ -29,8 +29,10 @@
 \section{Experimental evaluation}
 \label{sec:expt}
 
-The efficacy of \dd{} is established with a set of experiments using the
-following setup,
+\revised{To demonstrate the correctness of our implementation and 
+showcase flexibility of \dd{} to meet memory management 
+requirements of derivative clouds, we have performed a set of experiments 
+using the following setup,
 a 16-core blade server with 3.4 Ghz  CPUs (Intel Xeon CPU E5-2650)
 and 32 GB RAM.
 %
@@ -39,7 +41,7 @@ through the SATA interface.
 %
 As workloads, we used
 the \web, \proxy, \mail{} and \video{} profiles of the 
-Filebench~\cite{filebench} workload suite.
+Filebench~\cite{filebench} workload suite.}
 %  
 %
 
@@ -69,7 +71,7 @@ partitioning on a per-container basis (referred as \emph{Global}) % (\S Figure~\
 %weightage of 25 
 (iii) a 240 GB SSD backed hypervisor cache with 
 \dd{} cache management partitioning the cache equally among all containers
-(referred as \emph{DDSSD}),
+(referred as \emph{DDSSD}).
 %(\S Figure~\ref{fig:expt1}(c)). 
 %cache management parwith equal weightages for each application container.
 %weightage of 25 (\S Figure~\ref{fig:expt1}(c)). 
@@ -214,8 +216,12 @@ through sufficient SSD availability in the hypervisor cache.
 These results show that even in case of sufficient hypervisor cache
 availability, enforcing fairness across applications can result in
 significant application benefits.
-
-
+\revised{CPU overhead for accessing the cache in DDMem and DDSSD 
+modes was comparable with Global mode.
+% 
+In general, the overheads were equivalent to exclusive hypervisor
+cache implementations in non-nested virtualized systems~\cite{kvmzcache}. 
+}
 \subsection{Flexible hypervisor cache management}
 \label{subsec:flex}
 %
@@ -441,7 +447,7 @@ based techniques cannot.
 To demonstrate such capabilities, we performed the following experiment.
 %
 A single VM hosted four application containers and executed the 
-MongoDB, Redis, MySQL data stores and the Filebench webserver workload.
+MongoDB, Redis, MySQL data stores and the Filebench Webserver workload.
 The data stores acted as backends for YCSB clients.
 %and
 %MySQL workloads with 
@@ -466,7 +472,7 @@ the maximum aggregate throughput.
 % 
 
 Referring to Table~\ref{table:ddsdc}, a hypervisor cache partition of 60:40 
-between the MongoDB workload and the Webserver workloada met their SLA requirements
+between the MongoDB workload and the Webserver workload met their SLA requirements
 and yielded the maximum aggregate throughput with Morai++.
 %
 Morai++ could not satisfy application performance targets of Redis and MySQL 
@@ -533,7 +539,7 @@ Based on this setup, \dd{} meets the application SLA requirements
 of all the applications and the aggregate throughput achieved is higher
 by a large margin.
 %
-This achieved primarily through improvements in the throughputs achieved
+This achieved primarily through improvements in the throughput achieved
 by the MySQL and Redis applications.
 %
 Note that, both these memory-bound applications were positively 
@@ -648,7 +654,7 @@ each executed the \video{} workload within
 a single application container. 
 %
 Initially, the \dd{} memory backed cache size limit was 2 GB and VM1 
-was given a weightage of 100.
+was given a weight of 100.
 %
 When VM2 boots up (at 600 seconds), the \dd{} cache weights 
 for VM1 and VM2 were set to 60 and 40, respectively.
@@ -660,7 +666,7 @@ At around 1800 seconds from the start of the experiment, another
 virtual machine VM4 was started.
 and the \dd{} memory backed cache size was increased to 4 GB.
 %
-Further, the cache distribution weightages for VM1, VM2 and VM4 
+Further, the cache distribution weights for VM1, VM2 and VM4 
 were configured as 40, 35 and 25, respectively.
 
 \dd{} cache distribution across VM1, VM2 and VM4 is as shown in
@@ -688,4 +694,31 @@ per-container partition sizes for each VM can be handled by \dd{}
 in a dynamic manner. This feature is a key enabler to develop
 adaptive memory and cache management policies depending
 on application behavior, workloads and execution entity priorities.
-
+%
+\revised{
+\subsection{Dynamic policy considerations}
+%
+In a dynamic scenario, mapping high level policy objectives into DoubleDecker's
+weight based memory/SSD provisioning is non-trivial.
+%
+From the VM-level resource manager perspective, \dd{} can provide 
+information regarding the available cache size and cache utility aspects
+of existing application containers (GET\_STATS operation, see \S\ref{sec:impl}).
+%
+Any change in caching resource at the hypervisor (because of
+new VMs provisioned or released) or change in application container profile in
+the VM should trigger a readjustment of \dd{} cache weights.
+%
+%
+There are existing techniques like WSS estimation~\cite{wss, membal, mrc} to model 
+the relationship between memory allocation and application performance 
+which can be easily incorporated in our system.
+%
+Further, given the VM-level policy controller's access to information 
+regarding resource availability and application performance, {\em both in-VM and
+at the hypervisor}, new policy directions can be explored.
+%
+We understand the need for realistic setups (workloads, scale etc.) to evaluate
+such dynamic policies and leave this as part of our future work. 
+}
+%
