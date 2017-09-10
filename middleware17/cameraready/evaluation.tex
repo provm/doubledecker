@@ -31,7 +31,7 @@
 
 \revised{To demonstrate the correctness of our implementation and 
 showcase flexibility of \dd{} to meet memory management 
-requirements of derivative clouds, we have performed a set of experiments 
+requirements of derivative clouds, we performed experiments 
 using the following setup,
 a 16-core blade server with 3.4 Ghz  CPUs (Intel Xeon CPU E5-2650)
 and 32 GB RAM.
@@ -216,8 +216,9 @@ through sufficient SSD availability in the hypervisor cache.
 These results show that even in case of sufficient hypervisor cache
 availability, enforcing fairness across applications can result in
 significant application benefits.
+%
 \revised{CPU overhead for accessing the cache in DDMem and DDSSD 
-modes was comparable with Global mode.
+modes was comparable with the Global caching mode.
 % 
 In general, the overheads were equivalent to exclusive hypervisor
 cache implementations in non-nested virtualized systems~\cite{kvmzcache}. 
@@ -619,7 +620,7 @@ Initially, the cache allocation for Containers 1 and 2 were approximately
 respectively.
 %
 At around 1000 seconds from the start of the experiment, the \dd{} cache got 
-redistributed---$\sim$500 MB for Container 1, $\sim$300 MB  for Container 2 and
+redistributed--- $\sim$500 MB for Container 1, $\sim$300 MB  for Container 2 and
 $\sim$ 200 MB for Container 3---when Container 3 started using its cache entitlement.
 %
 Finally, when the \dd{} cache setting for Container 3 was dynamically changed 
@@ -706,19 +707,23 @@ information regarding the available cache size and cache utility aspects
 of existing application containers (GET\_STATS operation, see \S\ref{sec:impl}).
 %
 Any change in caching resource at the hypervisor (because of
-new VMs provisioned or released) or change in application container profile in
-the VM should trigger a readjustment of \dd{} cache weights.
+new VMs provisioned or released), or change in application container profile in
+the VM, or application SLA requirement
+should trigger a readjustment of \dd{} cache usage weights.
 %
 %
-There are existing techniques like WSS estimation~\cite{wss, membal, mrc} to model 
+Existing techniques like WSS estimation~\cite{wss, membal, mrc} to model 
 the relationship between memory allocation and application performance 
-which can be easily incorporated in our system.
+can be incorporated in our system.
 %
 Further, given the VM-level policy controller's access to information 
 regarding resource availability and application performance, {\em both in-VM and
-at the hypervisor}, new policy directions can be explored.
+at the hypervisor}, new holistic policy directions can be explored.
 %
-We understand the need for realistic setups (workloads, scale etc.) to evaluate
-such dynamic policies and leave this as part of our future work. 
+We envision immediate future work of \dd{} to design such
+holistic policies and
+address requirements of dynamic setups at scale.
+%We understand the need for realistic setups (workloads, scale etc.) to evaluate
+%such dynamic policies and leave this as part of our future work. 
 }
 %
