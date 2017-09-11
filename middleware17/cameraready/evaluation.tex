@@ -134,7 +134,7 @@ the \video{} workload occupies up to 3 GB of the cache (in all caching modes).
 Beyond 500 seconds, the memory requirements of other workloads also
 do not fit in the VM and the corresponding containers 
 contend for the second chance cache.
-Correspondingly, the \video{} workloads cache occupancy decreases from 3 GB to 1.4 GB.
+Correspondingly, the \video{} workloads cache occupancy decreases from 3 GB to $\sim$ 1.4 GB.
 
 With the global cache policy, there is no deterministic cache capacity 
 for each container and all four workloads contend for the cache.
@@ -349,7 +349,7 @@ With the global mode, the hypervisor cache usage was dominated by the \video-wor
 while other applications (C1-C3) contended for the cache
 and could never reach a proportionate sharing ratio.
 %
-With\dd's DDMem policy, cache usage of \video-workload reduced to 
+With \dd's DDMem policy, cache usage of \video-workload reduced to 
 the minimum (around 400 MB), close to its fair share,
 when other applications started using the cache.
 %
@@ -452,10 +452,10 @@ MongoDB, Redis, MySQL data stores and the Filebench Webserver workload.
 The data stores acted as backends for YCSB clients.
 %and
 %MySQL workloads with 
-The VM was provisioned with 6GB memory and 8 CPUs (2 CPUs pinned
+The VM was provisioned with 6 GB memory and 8 CPUs (2 CPUs pinned
 to each application container).
 %
-The hypervisor cache was provisioned to 2GB.
+The hypervisor cache was provisioned to 2 GB.
 %
 To approximate a centralized hypervisor cache management approach 
 like Morai~\cite{sdc},
@@ -479,7 +479,7 @@ and yielded the maximum aggregate throughput with Morai++.
 Morai++ could not satisfy application performance targets of Redis and MySQL 
 workloads while barely managed to meet MongoDB performance targets. 
 %
-In this setup, usage of the 6GB VM memory (shared
+In this setup, usage of the 6 GB VM memory (shared
 by all containers) was 0.5 GB, 1.6 GB, 1.8 GB and 2.2 GB, for the 
 MongoDB, MySQL,
 Redis and Webserver workloads, respectively.
@@ -649,7 +649,7 @@ available for each change with time.
 To demonstrate \dd's suitability in this setup, we performed the
 following experiment.
 %
-Four VMs, each configured with 4GB RAM were started at an
+Four VMs, each configured with 4 GB RAM were started at an
 interval of 600 seconds and
 each executed the \video{} workload within 
 a single application container. 
@@ -712,8 +712,9 @@ the VM, or application SLA requirement
 should trigger a readjustment of \dd{} cache usage weights.
 %
 %
-Existing techniques like WSS estimation~\cite{wss, membal, mrc} to model 
-the relationship between memory allocation and application performance 
+\deba{should we add control theoritic work like centaur and tws here?}
+Existing techniques like MRC~\cite{mrc,membal}, WSS estimation~\cite{wss, shards} etc. 
+to model the relationship between memory allocation and application performance 
 can be incorporated in our system.
 %
 Further, given the VM-level policy controller's access to information 
