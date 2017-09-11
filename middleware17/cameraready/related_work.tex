@@ -11,7 +11,7 @@ KSM scanned pages and the inclusive cache.
 %in an indirect manner.
 %
 Transcendent memory~\cite{memtrans} proposed a guest OS supported
-exclusive caching framework which and was
+exclusive caching framework which was
 first implemented in Xen~\cite{oracletmem}.
 %  
 Exclusive hypervisor cache for KVM ~\cite{kvmzcache} based on the 
@@ -105,10 +105,13 @@ systems~\cite{ksmpaper,utc}.
 Integration of \dd{} with deduplication to enhance the memory management
 efficiency in a derivative cloud setup would be an interesting future
 direction of our work.
-\puru{can we add another line about what this integration would mean,
-or what it implies for design? this is preceding line.}
+%\puru{can we add another line about what this integration would mean,
+%or what it implies for design? this is preceding line.}
 %
 \revised{
+\deba{While deduplication of hypervisor cache itself can be easily incorporated
+into \dd{}, deduplication across hypervisor cache and memory used by VMs require 
+specialized techniques.}
 %While exclusive caching takes care of deduplication of objects in
 %%of memory across 
 %the hypervisor cache and page cache of individual virtual machines, there is 
@@ -119,6 +122,7 @@ Synergy~\cite{synergy}, a holistic deduplication techniques in virtualized syste
 combines benefits of sharing and ballooning for resource provisioning
 via the hypervisor cache. 
 %
+\deba{cant comprehend the next sentence}
 With the a two-level storage options \dd{}, can performance of this system
 to different treatment of shared and unshared pages, and is yet another
 intersting direction of future work.
