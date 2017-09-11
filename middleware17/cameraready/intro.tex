@@ -67,7 +67,8 @@ models of cloud infrastructure services.
 %cloud infrastructure services.
 %
 Provisioning of one or more application containers inside VMs, 
-a recently popular nested hosting technique, has promising potential considering 
+a recently popular nested hosting technique, has promising 
+potential considering 
 low virtualization overheads compared
 to nesting virtual machines~\cite{middleware16,vmw-docker}. 
 %
@@ -75,8 +76,8 @@ to nesting virtual machines~\cite{middleware16,vmw-docker}.
 %like \emph{derivative cloud} model~\cite{spotcheck, google} which 
 %is the focus of this work.
 %
-The \emph{derivative cloud} model~\cite{spotcheck, google}
-instantiated with containers inside VMs is the focus of this work.
+The \emph{derivative cloud} model~\cite{spotcheck, google},
+instantiated with containers inside VMs, is the focus of this work.
 %
 In the derivative model, an intermediate service provider builds
 service offerings using services rented, leased or purchased.
@@ -168,9 +169,10 @@ techniques like ballooning~\cite{vmware,hotplug} can explicitly
 push the disk caching to the hypervisor, fully or partially.
 %to enable system level management of memory use for disk content caching.
 %
-\deba{remove?
-In fact, in the second configuration, the page cache of guest OSes
-can be completely offloaded to the hypervisor.} 
+%\deba{remove? %puru. okay lets remove. in the context of this paper,
+%%may be coutner-production and confusing.
+%In fact, in the second configuration, the page cache of guest OSes
+%can be completely offloaded to the hypervisor.} 
 %
 The hypervisor in-turn can improve
 memory efficiency by employing per-VM differentiated provisioning,
