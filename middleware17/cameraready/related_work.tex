@@ -95,7 +95,7 @@ allocation to the VMs have been proposed~\cite{wss, membal, tws}.
 Hypervisor caching and \dd{} complements the dynamic memory controllers
 by providing symbiotic resource management capabilities.
 %
-\dd{} furthers the flexibility in memory resource management in container 
+\dd{} extends the flexibility of memory resource management in container 
 within VM setups.
 %
 Memory deduplication~\cite{vmware,ksmpaper,satori} is another memory
@@ -105,5 +105,27 @@ systems~\cite{ksmpaper,utc}.
 Integration of \dd{} with deduplication to enhance the memory management
 efficiency in a derivative cloud setup would be an interesting future
 direction of our work.
+\puru{can we add another line about what this integration would mean,
+or what it implies for design? this is preceding line.}
+%
+\revised{
+%While exclusive caching takes care of deduplication of objects in
+%%of memory across 
+%the hypervisor cache and page cache of individual virtual machines, there is 
+%a chance of content duplication across virtual machines and the hypervisor
+%cache.
+%
+Synergy~\cite{synergy}, a holistic deduplication techniques in virtualized systems,
+combines benefits of sharing and ballooning for resource provisioning
+via the hypervisor cache. 
+%
+With the a two-level storage options \dd{}, can performance of this system
+to different treatment of shared and unshared pages, and is yet another
+intersting direction of future work.
+%
+% can be 
+%incorporated into DoubleDecker to address the issue of duplication and left as
+%a future direction. 
+}
 %
 

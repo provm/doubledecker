@@ -214,7 +214,7 @@ via the guest OS cache interface.
 %
 The hypervisor cache store applies the policies to partition the
 cache across the containers of a virtual machine and also maintains
-cache proportionality across virtual machine.
+cache proportionality across virtual machines.
 %
 The \dd{} solution provides backend storage implementation with
 support for dynamic reconfiguration of policies, both at the
@@ -262,6 +262,24 @@ the SSD.
 %cache.
 %
 %We present empirical results to demonstrate this in Section~\ref{sec:expt}.
+\revised{
+To incorporate comprehensive trickle-down and trickle-up policies,
+the SSD store can be used when the memory share of the
+container is exhuasted and objects pushed back to the memory
+cache on acces or in low-memory pressure periods. 
+%
+These aspects
+of the design require identifying events for transitions of objects
+in either direction, selection of objects, quantum of transition etc.
+%
+The comprehensive design and evaluation of the hybrid store
+is left as a future direction. 
+%
+In this work, we present
+results with applications configured to use either in-memory
+or SSD backed caches, not both.
+}
+\puru{remove next few lines, replace with above. \\
 Nevertheless, keeping the core principle of supporting cache management from 
 within the VM, we provide a hybrid mode configuration option for the
 VM-level controller.
@@ -276,6 +294,7 @@ is left as a future direction.
 In this work, we present
 results with applications configured to use either in-memory
 or SSD backed caches, not both.
+}
 %
 %
 %memory and SSD.
@@ -284,15 +303,15 @@ or SSD backed caches, not both.
 %are stored either in the memory store or the SSD store.
 %
 
-\puru{am not sure we should add these lines. does not add much.
-synergy can be added to related work.}
-\revised{
-While exclusive caching takes care of deduplication of memory across 
-the hypervisor cache and page cache of individual virtual machines, there is 
-a chance of content duplication across virtual machines and the hypervisor
-cache.
-%
-Holistic deduplication techniques in virtualized systems~\cite{synergy} can be 
-incorporated into DoubleDecker to address the issue of duplication and left as
-a future direction. 
-}
+%\puru{am not sure we should add these lines. does not add much.
+%synergy can be added to related work.}
+%\revised{
+%While exclusive caching takes care of deduplication of memory across 
+%the hypervisor cache and page cache of individual virtual machines, there is 
+%a chance of content duplication across virtual machines and the hypervisor
+%cache.
+%%
+%Holistic deduplication techniques in virtualized systems~\cite{synergy} can be 
+%incorporated into DoubleDecker to address the issue of duplication and left as
+%a future direction. 
+%}
