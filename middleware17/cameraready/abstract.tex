@@ -48,7 +48,8 @@ Existing hypervisor caching solutions have limited effectiveness in
 nested setups due to their nesting agnostic design, centralized 
 management model and lack of holistic view of memory management.
 %
-We propose \dd{}, a decentralized memory management framework,
+We propose \dd{}, a decentralized disk caching framework,
+%memory management framework,
 realized through guest OS and hypervisor cooperation,
 with support for efficient memory management in derivative clouds.
 %
@@ -70,9 +71,12 @@ and are a key feature of \dd{}.
 %and its efficacy in designing holistic policies confirming to 
 %multi-level policy objectives.
 %
-Our experimentation with \dd{} showed that application performance
+Our experimentation with \dd{} demonstrates
+that application performance
 can be consistently improved due to the extended set of
-memory provisioning configurations.
+memory provisioning configurations. 
+With our setup, we report an average
+performance improvement of 4x and a maximum of 11x.
 %
 %improved by up to 11 times compared to application agnostic
 %provisioning techniques.
