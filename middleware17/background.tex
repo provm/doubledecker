@@ -116,7 +116,7 @@ exist~\cite{zcache, oracletmem,kvmzcache, mortar}.
 %
 However, no state-of-the-art solution
 supports application cognizant second chance cache management,
-especially for derivative cloud setups.
+especially for nested hosting setups.
 \begin{figure}[t]
   \centering
 \includegraphics[width=0.35\textwidth]{images/tmem}
@@ -391,7 +391,7 @@ a 1.5 GB in-VM memory limit and 0.5 GB hypervisor cache limit for
 the container. 
 %
 Application performance for four different workloads,
-the Filebench webserver workload and YCSB~\cite{ycsb} using 
+the Filebench \web{} workload and YCSB~\cite{ycsb} using 
 Redis, MongoDB and MySQL data stores,
 with different allocation ratios is shown in 
 Figure~\ref{fig:app_behavior}. 
