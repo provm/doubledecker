@@ -712,10 +712,13 @@ the VM, or application SLA requirement
 should trigger a readjustment of \dd{} cache usage weights.
 %
 %
-\deba{should we add control theoritic work like centaur and tws here?}
-Existing techniques like MRC~\cite{mrc,membal}, WSS estimation~\cite{wss, shards} etc. 
-to model the relationship between memory allocation and application performance 
-can be incorporated in our system.
+%\deba{should we add control theoritic work like centaur and tws here?}
+%Existing techniques like MRC~\cite{mrc,membal,tws}, WSS estimation~\cite{wss, shards, centaur} etc. 
+%to model the relationship between memory allocation and application performance 
+%can be incorporated in our system.
+Existing techniques based on working set size estimation~\cite{wss, shards, tws} 
+and miss-ratio-curves ~\cite{mrc,membal,centaur} which model the relationship between
+memory allocation and application performance can be incorporated in our system.
 %
 Further, given the VM-level policy controller's access to information 
 regarding resource availability and application performance, {\em both in-VM and
