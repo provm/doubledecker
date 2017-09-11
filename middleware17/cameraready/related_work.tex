@@ -109,27 +109,31 @@ direction of our work.
 %or what it implies for design? this is preceding line.}
 %
 \revised{
-\deba{While deduplication of hypervisor cache itself can be easily incorporated
-into \dd{}, deduplication across hypervisor cache and memory used by VMs require 
-specialized techniques.}
+While deduplication of hypervisor cache itself can be easily incorporated
+into \dd{}, deduplication across hypervisor cache and memory used by VMs requires
+additional techniques.
 %While exclusive caching takes care of deduplication of objects in
 %%of memory across 
 %the hypervisor cache and page cache of individual virtual machines, there is 
 %a chance of content duplication across virtual machines and the hypervisor
 %cache.
 %
-Synergy~\cite{synergy}, a holistic deduplication techniques in virtualized systems,
+Synergy~\cite{synergy}, a holistic deduplication technique in virtualized systems,
 combines benefits of sharing and ballooning for resource provisioning
 via the hypervisor cache. 
 %
-\deba{cant comprehend the next sentence}
-With the a two-level storage options \dd{}, can performance of this system
-to different treatment of shared and unshared pages, and is yet another
-intersting direction of future work.
+%\deba{cant comprehend the next sentence}
+With the two-level storage option of \dd{}, 
+shareable and non-shareable pages can use different storage options
+to improve performance. We see this as yet another complimentary 
+direction for future work.
+}
+%to different treatment of shared and unshared pages, and is yet another
+%interesting direction of future work.
 %
 % can be 
 %incorporated into DoubleDecker to address the issue of duplication and left as
 %a future direction. 
-}
+%}
 %
 
