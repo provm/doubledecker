@@ -49,13 +49,14 @@ management. % in virtualized systems.
 While these techniques and associated policies have been studied
 extensively in virtualization setups~\cite{vmware, membal, membud, kvmzcache, tws},
 they have not been studied in \emph{nested hosting} setups.
-\revised{
+%\revised{
 The central proposition of this work is that resource management
 techniques employed with single-level virtualization setups
 are inadequate in the context of nested-hosting setups 
-and require augmentation and re-design.}
+and require augmentation and re-design.
+%}
 
-\revised{
+%\revised{
 %Additional overheads due to nested virtualization layers~\cite{blanket,turtle}
 Overcoming the additional overheads due to nesting~\cite{blanket,turtle}
 has been one of the primary bottlenecks in realizing sub-tenancy
@@ -95,7 +96,8 @@ hypervisor-level policy tools.
 The notion of two isolated resource management entities with 
 different levels of visibility into their respective managed 
 components---containers at the virtual machine level and VMs at the
-hypervisor level, require careful analysis of design alternatives.} 
+hypervisor level, require careful analysis of design alternatives.
+%} 
 %
 %Containers are provisioned and managed by the VM administrators,
 %who may want to employ higher level QoS policies in terms of priority or
@@ -113,7 +115,7 @@ hypervisor level, require careful analysis of design alternatives.}
 %nested virtualization framework to analyze their 
 %
 
-\revised{
+%\revised{
 %In this work, our focus is the use of hypervisor caching for
 %effective disk cache memory management in derivative clouds.
 %the focus is to explore the hypervisor caching solution space 
@@ -141,7 +143,7 @@ Further, disk cache management decisions of a guest OS are
 localized to the virtual machine and are oblivious to memory 
 usage and disk cache utility 
 across the virtual machines hosted on the same physical machine.
-}
+%}
 %
 %So, in a multi-hosting system, memory used to cache disk content 
 %by applications (or operating systems), if managed
@@ -261,7 +263,7 @@ for provisioning the VM-specific hypervisor cache.
 %application performance by provisioning in-VM memory and the
 %hypervisor cache resources.  
 %
-\revised{
+%\revised{
 Our proposed solution addresses the above requirements 
 through synergistic extensions in the guest OS
 and the hypervisor. 
@@ -290,7 +292,7 @@ resource management requirements.
 %hypervisor cache management with nested policy enforcement
 %capability. 
 %
-}
+%}
 
 %
 %A derivative cloud that hosts

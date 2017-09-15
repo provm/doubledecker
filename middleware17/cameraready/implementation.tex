@@ -87,7 +87,7 @@ hypervisor cache operations.
 %
 This event is generated when the \cgroup{} sysfs entry is updated 
 (due to policy control decision) to update the container hypervisor
-cache specifications---the storage type and \revised{weight} percentage.
+cache specifications---the storage type and weight percentage.
 %\puru{need to make consistent---weight vs. ratios.}
 %
 Update to the \cgroup{} variables is captured by Linux 
@@ -209,11 +209,12 @@ violated.
 In the current implementation, FIFO is used (LRU equivalent for exclusive caches)
 to implement eviction at a pool level.
 %
-\revised{
+%\revised{
 As part of future work, we plan to evaluate different eviction policies
 (similar to ExTmem~\cite{extmem}) and provide a knob for 
 the VM-level policy controller to employ application specific eviction
-policies if desired.}
+policies if desired.
+%}
  
 %
 
@@ -309,7 +310,7 @@ applying the \dd{} cache weight configuration---are determined (line\# 8-12) and
 stored in the \textit{overusedlist}.  
 %
 Sum of underutilized memory (\textit{underusedbuf}) is redistributed among
-the entities as per their \revised{weights} to calculate their effective entitlements 
+the entities as per their weights to calculate their effective entitlements 
 (\textit{E.entitlement} + (\textit{b} * \textit{E.weight} / \textit{cw}))
 and exceed values.
 %

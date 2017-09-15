@@ -32,7 +32,7 @@ to control per-container provisioning in the corresponding
 virtual machines cache region.
 %
 Our current design specifies allocations in terms of cache 
-usage \revised{weights} in percentage between peer entities at 
+usage weights in percentage between peer entities at 
 each hosting level. 
 %
 Additionally, the policy controller in each virtual machine
@@ -58,7 +58,7 @@ and \texttt{W} the weight specification for relative sizing.
 %
 
 Figure~\ref{fig:desired} shows a setup with two virtual machines
-with a cache allocation \revised{weight} percentage of 33 and 67. 
+with a cache allocation weight percentage of 33 and 67. 
 The per-VM ratio is
 applied to both the memory and the SSD store across all VMs
 \footnote{A generalized setup where different cache size
@@ -101,7 +101,7 @@ all of its share in the SSD store to the third container.
 Based on the above specifications the hypervisor memory store
 is shared by three containers and the SSD store by two.
 %
-Simultaneously, the \revised{weights} for VM1 and VM2 for both the stores
+Simultaneously, the weights for VM1 and VM2 for both the stores
 are 33 and 67, respectively.
 %
 %As shown in the Figure~\ref{fig:desired}, hypervisor cache gets
@@ -232,13 +232,14 @@ distributed over both in-memory and SSD storage
 on a per-container basis.
 %
 
-\revised{The hypervisor cache also implements an eviction procedure
+%\revised{
+The hypervisor cache also implements an eviction procedure
 to flush objects in the cache during memory pressure.
 %
 %As part of this work, we implement a FIFO policy for
 %evictions of objects on memory pressure.
 %
-}
+%}
 With two types of storage options available,
 a \emph{trickle-down} and \emph{trickle-up} cache is possible---
 objects evicted from the second-chance cache are stored
@@ -262,7 +263,7 @@ the SSD.
 %cache.
 %
 %We present empirical results to demonstrate this in Section~\ref{sec:expt}.
-\revised{
+%\revised{
 To incorporate comprehensive trickle-down and trickle-up policies,
 the SSD store can be used when the memory share of the
 container is exhuasted and objects pushed back to the memory
@@ -278,7 +279,7 @@ is left as a future direction.
 In this work, we present
 results with applications configured to use either in-memory
 or SSD backed caches, not both.
-}
+%}
 %\puru{remove next few lines, replace with above. \\
 %Nevertheless, keeping the core principle of supporting cache management from 
 %within the VM, we provide a hybrid mode configuration option for the

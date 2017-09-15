@@ -29,7 +29,8 @@
 \section{Experimental evaluation}
 \label{sec:expt}
 
-\revised{To demonstrate the correctness of our implementation and 
+%\revised{
+To demonstrate the correctness of our implementation and 
 showcase flexibility of \dd{} to meet memory management 
 requirements of derivative clouds, we performed experiments 
 using the following setup,
@@ -41,7 +42,8 @@ through the SATA interface.
 %
 As workloads, we used
 the \web, \proxy, \mail{} and \video{} profiles of the 
-Filebench~\cite{filebench} workload suite.}
+Filebench~\cite{filebench} workload suite.
+%}
 %  
 %
 
@@ -217,12 +219,13 @@ These results show that even in case of sufficient hypervisor cache
 availability, enforcing fairness across applications can result in
 significant application benefits.
 %
-\revised{CPU overhead for accessing the cache in DDMem and DDSSD 
+%\revised{
+CPU overhead for accessing the cache in DDMem and DDSSD 
 modes was comparable with the Global caching mode.
 % 
 In general, the overheads were equivalent to exclusive hypervisor
 cache implementations in non-nested virtualized systems~\cite{kvmzcache}. 
-}
+%}
 \subsection{Flexible hypervisor cache management}
 \label{subsec:flex}
 %
@@ -404,39 +407,6 @@ the memory store or the SSD store, for positive benefits for all applications.
 %\end{center}
 %\end{table}
 
-\begin{table}[t]
-\small
-\begin{center}
-\begin{tabular}{|l|c|c|c|}
-\hline
-{}           & {} & {} & {App. memory,}\\
-{ Workload}  & { Technique} &  Throughput{} & {Hypervisor} \\
-{\em (SLA)} & & { } & {cache}  \\
-& & { (ops/sec)} & {(GB)}  \\
-\hline 
-\hline 
-{\bf MongoDB} & Morai++ & 16.9 & 0.5, 1.3 \\
-%\cline{2-4}
-{\em (15 ops/sec)} & \dd{}& 25.1 & 1, 0.4  \\
-\hline
-{\bf MySQL} & Morai++ & 48.5 & 1.6, 0 \\
-%\cline{2-4}
-{\em (100 ops/sec)} & \dd{} & 132.7 & 1.9, 0 \\
-\hline
-{\bf Redis} & Morai++ & 13 & 1.8, 0 \\
-%\cline{2-4}
-{\em (5000 ops/sec)} & \dd{} & 11186  & 2, 0 \\
-\hline
-{\bf Webserver} & Morai++ & 1289 & 2.2, 0.5 \\
-%\cline{2-4}
-{\em (900 ops/sec)} & \dd{} & 988 & 1, 1.6  \\
-\hline 
-\end{tabular}
-\caption{Comparison of centralized second chance cache management with \dd{}.}
-\vspace{-1cm}
-\label{table:ddsdc}
-\end{center}
-\end{table}
 %To demonstrate the effectiveness of \dd{} 
 %in ensuring application performance guarantees and improve overall system-wide
 %performance, we performed the following experiment.
@@ -471,6 +441,39 @@ the maximum aggregate throughput.
 %we tried different cache partitioning at the hypervisor level while the VM level
 %memory provisioning was left untouched.
 % 
+\begin{table}[t]
+\small
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+{}           & {} & {} & {App. memory,}\\
+{ Workload}  & { Technique} &  Throughput{} & {Hypervisor} \\
+{\em (SLA)} & & { } & {cache}  \\
+& & { (ops/sec)} & {(GB)}  \\
+\hline 
+\hline 
+{\bf MongoDB} & Morai++ & 16.9 & 0.5, 1.3 \\
+%\cline{2-4}
+{\em (15 ops/sec)} & \dd{}& 25.1 & 1, 0.4  \\
+\hline
+{\bf MySQL} & Morai++ & 48.5 & 1.6, 0 \\
+%\cline{2-4}
+{\em (100 ops/sec)} & \dd{} & 132.7 & 1.9, 0 \\
+\hline
+{\bf Redis} & Morai++ & 13 & 1.8, 0 \\
+%\cline{2-4}
+{\em (5000 ops/sec)} & \dd{} & 11186  & 2, 0 \\
+\hline
+{\bf Webserver} & Morai++ & 1289 & 2.2, 0.5 \\
+%\cline{2-4}
+{\em (900 ops/sec)} & \dd{} & 988 & 1, 1.6  \\
+\hline 
+\end{tabular}
+\caption{Comparison of centralized second chance cache management with \dd{}.}
+\vspace{-1cm}
+\label{table:ddsdc}
+\end{center}
+\end{table}
 
 Referring to Table~\ref{table:ddsdc}, a hypervisor cache partition of 60:40 
 between the MongoDB workload and the Webserver workload met their SLA requirements
@@ -696,7 +699,7 @@ in a dynamic manner. This feature is a key enabler to develop
 adaptive memory and cache management policies depending
 on application behavior, workloads and execution entity priorities.
 %
-\revised{
+%\revised{
 \subsection{Dynamic policy considerations}
 %
 In a dynamic scenario, mapping high level policy objectives into DoubleDecker's
@@ -729,5 +732,5 @@ holistic policies and
 address requirements of dynamic setups at scale.
 %We understand the need for realistic setups (workloads, scale etc.) to evaluate
 %such dynamic policies and leave this as part of our future work. 
-}
+%}
 %
