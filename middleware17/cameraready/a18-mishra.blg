@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: a18-mishra.aux
+The style file: acm.bst
+Database file #1: ddecker.bib
+You've used 50 entries,
+            2253 wiz_defined-function locations,
+            768 strings with 11675 characters,
+and the built_in function-call counts, 18152 in all, are:
+= -- 1692
+> -- 875
+< -- 0
++ -- 365
+- -- 310
+* -- 1238
+:= -- 2793
+add.period$ -- 159
+call.type$ -- 50
+change.case$ -- 305
+chr.to.int$ -- 0
+cite$ -- 50
+duplicate$ -- 760
+empty$ -- 1550
+format.name$ -- 310
+if$ -- 3905
+int.to.chr$ -- 0
+int.to.str$ -- 50
+missing$ -- 35
+newline$ -- 262
+num.names$ -- 100
+pop$ -- 489
+preamble$ -- 1
+purify$ -- 255
+quote$ -- 0
+skip$ -- 509
+stack$ -- 0
+substring$ -- 938
+swap$ -- 236
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 200
+warning$ -- 0
+while$ -- 164
+width$ -- 52
+write$ -- 499

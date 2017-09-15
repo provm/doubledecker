@@ -1,0 +1,304 @@
+\begin{thebibliography}{10}
+
+\bibitem{vmw-docker}
+{\sc Ali, Q., Agarwal, B., and Bergamasco, D.}
+\newblock Docker containers performance in vmware vsphere.
+\newblock \url{https://blogs.vmware.com/}, 2014.
+
+\bibitem{ksmpaper}
+{\sc Arcangeli, A., Eidus, I., and Wright, C.}
+\newblock Increasing memory density by using ksm.
+\newblock In {\em Proceedings of the Linux Symposium\/} (2009), pp.~19--28.
+
+\bibitem{xen}
+{\sc Barham, P., Dragovic, B., Fraser, K., Hand, S., Harris, T., Ho, A.,
+  Neugebauer, R., Pratt, I., and Warfield, A.}
+\newblock Xen and the art of virtualization.
+\newblock {\em SIGOPS Operating Systems Review 37}, 5 (Oct. 2003), 164--177.
+
+\bibitem{utc}
+{\sc Barker, S., Wood, T., Shenoy, P., and Sitaraman, R.}
+\newblock An empirical study of memory sharing in virtual machines.
+\newblock In {\em Proceedings of the USENIX Annual Technical Conference\/}
+  (2012).
+
+\bibitem{zone}
+{\sc Beck, J., Comay, D., Ozgur, L., Price, D., Andy, T., Andrew, G., and
+  Blaise, S.}
+\newblock Virtualization and namespace isolation in the solaris operating
+  system (psarc/2002/174), 2006.
+
+\bibitem{turtle}
+{\sc Ben-Yehuda, M., Day, M.~D., Dubitzky, Z., Factor, M., Har'El, N., Gordon,
+  A., Liguori, A., Wasserman, O., and Yassour, B.-A.}
+\newblock The turtles project: Design and implementation of nested
+  virtualization.
+\newblock In {\em Proceedings of the 9th USENIX Conference on Operating Systems
+  Design and Implementation\/} (2010), pp.~423--436.
+
+\bibitem{intercloud}
+{\sc Bernstein, D., Ludvigson, E., Sankar, K., Diamond, S., and Morrow, M.}
+\newblock Blueprint for the intercloud - protocols and formats for cloud
+  computing interoperability.
+\newblock In {\em Proceedings of the Fourth International Conference on
+  Internet and Web Applications and Services\/} (2009), pp.~328--336.
+
+\bibitem{tws}
+{\sc Chiang, J.-H., Li, H.-L., and Chiueh, T.-c.}
+\newblock Working set-based physical memory ballooning.
+\newblock In {\em Proceedings of the 10th International Conference on Autonomic
+  Computing\/} (2013).
+
+\bibitem{ycsb}
+{\sc Cooper, B.~F., Silberstein, A., Tam, E., Ramakrishnan, R., and Sears, R.}
+\newblock Benchmarking cloud serving systems with ycsb.
+\newblock In {\em Proceedings of the 1st ACM Symposium on Cloud Computing\/}
+  (2010), pp.~143--154.
+
+\bibitem{zcache}
+{\sc Corbet, J.}
+\newblock zcache: a compressed page cache.
+\newblock \url{www.lwn.net/Articles/397574/}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{wss}
+{\sc Denning, P.~J.}
+\newblock The working set model for program behavior.
+\newblock {\em Communications of ACM 11}, 5 (1968), 323--333.
+
+\bibitem{docker}
+{\sc Docker}.
+\newblock Docker.
+\newblock \url {https://www.docker.com/}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{memcached}
+{\sc Fitzpatrick, B.}
+\newblock Distributed caching with memcached.
+\newblock {\em Linux J. 2004}, 124 (2004).
+
+\bibitem{vx32}
+{\sc Ford, B., and Cox, R.}
+\newblock Vx32: Lightweight user-level sandboxing on the x86.
+\newblock In {\em Proceedings of the USENIX Annual Technical conference\/}
+  (2008), pp.~293--306.
+
+\bibitem{recursv}
+{\sc Ford, B., Hibler, M., Lepreau, J., Tullmann, P., Back, G., and Clawson,
+  S.}
+\newblock Microkernels meet recursive virtual machines.
+\newblock {\em SIGOPS Operating Systems Review 30}, SI (1996), 137--151.
+
+\bibitem{google}
+{\sc Google}.
+\newblock Google cloud platform.
+\newblock \url {https://cloud.google.com/container-engine}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{jail}
+{\sc henning Kamp, P., and Watson, R. N.~M.}
+\newblock Jails: Confining the omnipotent root.
+\newblock In {\em Proceedings of the second International SANE Conference\/}
+  (2000).
+
+\bibitem{heroku}
+{\sc Heroku}.
+\newblock The heroku platform.
+\newblock \url {https://www.heroku.com/platform}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{mortar}
+{\sc Hwang, J., Uppal, A., Wood, T., and Huang, H.}
+\newblock Mortar: Filling the gaps in data center memory.
+\newblock In {\em Proceedings of the 10th international conference on Virtual
+  Execution Environments\/} (2014).
+
+\bibitem{intelmanual}
+{\sc Intel}.
+\newblock Intel® 64 and ia-32 architectures developer's manual: Vol. 3b.
+\newblock \url{www.intel.com}, 2016.
+
+\bibitem{geiger}
+{\sc Jones, S.~T., Arpaci-Dusseau, A.~C., and Arpaci-Dusseau, R.~H.}
+\newblock Geiger: Monitoring the buffer cache in a virtual machine environment.
+\newblock {\em SIGOPS Operating Systems Review 40}, 5 (2006), 14--24.
+
+\bibitem{kvm}
+{\sc Kivity, A.}
+\newblock {kvm: the Linux virtual machine monitor}.
+\newblock In {\em Proceedings of the Linux Symposium\/} (July 2007),
+  pp.~225--230.
+
+\bibitem{centaur}
+{\sc Koller, R., Mashtizadeh, A., and Rangaswami, R.}
+\newblock Centaur: Host-side ssd caching for storage performance control.
+\newblock In {\em Proceedings of the 12th International Conference on Autonomic
+  Computing\/} (2015).
+
+\bibitem{cgroup}
+{\sc Linux}.
+\newblock Cgroup.
+\newblock \url
+  {https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{cleancache}
+{\sc Linux}.
+\newblock Kernel documentation: vm/cleancache.
+\newblock \url{www.kernel.org/doc/Documentation/vm/cleancache.txt}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{lxc}
+{\sc Linux}.
+\newblock Linux containers.
+\newblock \url {https://linuxcontainers.org/}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{kvmconfig}
+{\sc Linux}.
+\newblock Tuning kvm.
+\newblock \url {http://www.linux-kvm.org/page/Tuning\_KVM}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{vmmexclusive}
+{\sc Lu, P., and Shen, K.}
+\newblock Virtual machine memory access tracing with hypervisor exclusive
+  cache.
+\newblock In {\em Proceedings of the USENIX Annual Technical Conference\/}
+  (2007), pp.~3:1--3:15.
+
+\bibitem{oracletmem}
+{\sc Magenheimer, D.}
+\newblock Update on transcendent memory on xen.
+\newblock Xen Summit 2010, 2016.
+
+\bibitem{memtrans}
+{\sc Magenheimer, D., Mason, C., McCracken, D., and Hackel, K.}
+\newblock Transcendent memory and linux.
+\newblock In {\em Proceedings of Linux Symposium\/} (2009), pp.~191--200.
+
+\bibitem{satori}
+{\sc Mi\l\'{o}s, G., Murray, D.~G., Hand, S., and Fetterman, M.~A.}
+\newblock Satori: enlightened page sharing.
+\newblock In {\em Proceedings of the USENIX Annual Technical conference\/}
+  (2009).
+
+\bibitem{kvmzcache}
+{\sc Mishra, D., and Kulkarni, P.}
+\newblock Comparative analysis of page cache provisioning in virtualized
+  environments.
+\newblock In {\em Proceedings of 22nd conference on Modelling, Analysis
+  Simulation of Computer and Telecommunication Systems (MASCOTS)\/} (2014),
+  pp.~213--222.
+
+\bibitem{synergy}
+{\sc Mishra, D., Kulkarni, P., and Rangaswami, R.}
+\newblock Synergy: A hypervisor managed holistic caching system.
+\newblock {\em IEEE Transactions on Cloud Computing pre-print\/} (2017).
+
+\bibitem{picloud}
+{\sc PI}.
+\newblock Pi cloud services.
+\newblock \url {https://www.picloudservices.com/}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{hotplug}
+{\sc Schopp, J., Fraser, K., and Silbermann, M.}
+\newblock Resizing memory with balloons and hotplug.
+\newblock In {\em Proceedings of Linux Symposium\/} (2006), pp.~313--319.
+
+\bibitem{middleware16}
+{\sc Sharma, P., Chaufournier, L., Shenoy, P., and Tay, Y.~C.}
+\newblock Containers and virtual machines at scale: A comparative study.
+\newblock In {\em Proceedings of the 17th International Middleware
+  Conference\/} (2016).
+
+\bibitem{singleton}
+{\sc Sharma, P., and Kulkarni, P.}
+\newblock Singleton: system-wide page deduplication in virtual environments.
+\newblock In {\em Proceedings of the 21st international symposium on
+  High-Performance Parallel and Distributed Computing\/} (2012), pp.~15--26.
+
+\bibitem{spotcheck}
+{\sc Sharma, P., Lee, S., Guo, T., Irwin, D., and Shenoy, P.}
+\newblock Spotcheck: Designing a derivative iaas cloud on the spot market.
+\newblock In {\em Proceedings of the Tenth European Conference on Computer
+  Systems\/} (2015), pp.~16:1--16:15.
+
+\bibitem{sdc}
+{\sc Stefanovici, I., Thereska, E., O'Shea, G., Schroeder, B., Ballani, H.,
+  Karagiannis, T., Rowstron, A., and Talpey, T.}
+\newblock Software-defined caching: Managing caches in multi-tenant data
+  centers.
+\newblock In {\em Proceedings of the Sixth ACM Symposium on Cloud Computing\/}
+  (2015), pp.~174--181.
+
+\bibitem{filebench}
+{\sc Sun}.
+\newblock Filebench.
+\newblock \url{www.filebench.sourceforge.net/wiki/index.php/Main_Page}.
+\newblock Accessed: 2016-11-18.
+
+\bibitem{extmem}
+{\sc Venkatesan, V., Wei, Q., and Tay, Y.}
+\newblock Ex-tmem: Extending transcendent memory with non-volatile memory for
+  virtual machines.
+\newblock In {\em Proceedings of 16th conference on High Performance Computing
+  and Communications\/} (2014).
+
+\bibitem{vmware:memory}
+{\sc {VMware}}.
+\newblock {The Role of Memory in VMware ESX Server 3}.
+\newblock \url{http://www.vmware.com/pdf/esx3_memory.pdf}, 2016.
+
+\bibitem{vmware}
+{\sc Waldspurger, C.~A.}
+\newblock Memory resource management in vmware esx server.
+\newblock {\em SIGOPS Operating Systems Review 36}, SI (Dec. 2002), 181--194.
+
+\bibitem{shards}
+{\sc Waldspurger, C.~A., Park, N., Garthwaite, A., and Ahmad, I.}
+\newblock Efficient mrc construction with shards.
+\newblock In {\em Proceedings of the 13th USENIX Conference on File and Storage
+  Technologies\/} (2015), pp.~95--110.
+
+\bibitem{blanket}
+{\sc Williams, D., Jamjoom, H., and Weatherspoon, H.}
+\newblock The xen-blanket: Virtualize once, run everywhere.
+\newblock In {\em Proceedings of the 7th ACM European Conference on Computer
+  Systems\/} (2012), pp.~113--126.
+
+\bibitem{supercloud}
+{\sc Williams, D., Jamjoom, H., and Weatherspoon, H.}
+\newblock Plug into the supercloud.
+\newblock {\em IEEE Internet Computing 17}, 2 (2013), 28--34.
+
+\bibitem{membud}
+{\sc Wood, T., Tarasuk-Levin, G., Shenoy, P., Desnoyers, P., Cecchet, E., and
+  Corner, M.~D.}
+\newblock Memory buddies: exploiting page sharing for smart colocation in
+  virtualized data centers.
+\newblock In {\em Proceedings of the 5th international conference on Virtual
+  Execution Environments\/} (2009), pp.~31--40.
+
+\bibitem{wsslow}
+{\sc Zhao, W., Jin, X., Wang, Z., Wang, X., Luo, Y., and Li, X.}
+\newblock Low cost working set size tracking.
+\newblock In {\em Proceedings of the USENIX Annual Technical Conference\/}
+  (2011).
+
+\bibitem{membal}
+{\sc Zhao, W., and Wang, Z.}
+\newblock Dynamic memory balancing for virtual machines.
+\newblock In {\em Proceedings of the 5th International Conference on Virtual
+  Execution Environments\/} (2009), pp.~21--30.
+
+\bibitem{mrc}
+{\sc Zhou, P., Pandey, V., Sundaresan, J., Raghuraman, A., Zhou, Y., and Kumar,
+  S.}
+\newblock Dynamic tracking of page miss ratio curve for memory management.
+\newblock In {\em Proceedings of the 11th conference on Architectural support
+  for programming languages and operating systems (ASPLOS)\/} (2004),
+  pp.~177--188.
+
+\end{thebibliography}
