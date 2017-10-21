@@ -1,46 +1,49 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: a18-mishra.aux
-The style file: acm.bst
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: ddecker.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 You've used 50 entries,
-            2253 wiz_defined-function locations,
-            768 strings with 11675 characters,
-and the built_in function-call counts, 18152 in all, are:
-= -- 1692
-> -- 875
+            5706 wiz_defined-function locations,
+            1568 strings with 23239 characters,
+and the built_in function-call counts, 52572 in all, are:
+= -- 5982
+> -- 2164
 < -- 0
-+ -- 365
-- -- 310
-* -- 1238
-:= -- 2793
-add.period$ -- 159
++ -- 657
+- -- 733
+* -- 3823
+:= -- 5746
+add.period$ -- 251
 call.type$ -- 50
-change.case$ -- 305
-chr.to.int$ -- 0
+change.case$ -- 355
+chr.to.int$ -- 47
 cite$ -- 50
-duplicate$ -- 760
-empty$ -- 1550
-format.name$ -- 310
-if$ -- 3905
-int.to.chr$ -- 0
-int.to.str$ -- 50
-missing$ -- 35
-newline$ -- 262
-num.names$ -- 100
-pop$ -- 489
+duplicate$ -- 4366
+empty$ -- 3203
+format.name$ -- 865
+if$ -- 12384
+int.to.chr$ -- 4
+int.to.str$ -- 0
+missing$ -- 156
+newline$ -- 425
+num.names$ -- 397
+pop$ -- 1970
 preamble$ -- 1
-purify$ -- 255
+purify$ -- 602
 quote$ -- 0
-skip$ -- 509
+skip$ -- 1688
 stack$ -- 0
-substring$ -- 938
-swap$ -- 236
+substring$ -- 3527
+swap$ -- 420
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 200
+type$ -- 1384
 warning$ -- 0
-while$ -- 164
-width$ -- 52
-write$ -- 499
+while$ -- 379
+width$ -- 0
+write$ -- 943

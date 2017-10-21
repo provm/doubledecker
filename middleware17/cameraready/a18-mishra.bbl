@@ -1,304 +1,653 @@
-\begin{thebibliography}{10}
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\bibitem{vmw-docker}
-{\sc Ali, Q., Agarwal, B., and Bergamasco, D.}
-\newblock Docker containers performance in vmware vsphere.
-\newblock \url{https://blogs.vmware.com/}, 2014.
+\begin{thebibliography}{00}
 
-\bibitem{ksmpaper}
-{\sc Arcangeli, A., Eidus, I., and Wright, C.}
-\newblock Increasing memory density by using ksm.
-\newblock In {\em Proceedings of the Linux Symposium\/} (2009), pp.~19--28.
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
 
-\bibitem{xen}
-{\sc Barham, P., Dragovic, B., Fraser, K., Hand, S., Harris, T., Ho, A.,
-  Neugebauer, R., Pratt, I., and Warfield, A.}
-\newblock Xen and the art of virtualization.
-\newblock {\em SIGOPS Operating Systems Review 37}, 5 (Oct. 2003), 164--177.
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{{\tt DOI:}\penalty0{#1}\ }
+  \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
 
-\bibitem{utc}
-{\sc Barker, S., Wood, T., Shenoy, P., and Sitaraman, R.}
-\newblock An empirical study of memory sharing in virtual machines.
-\newblock In {\em Proceedings of the USENIX Annual Technical Conference\/}
-  (2012).
+\bibitem[\protect\citeauthoryear{Ali, Agarwal, and Bergamasco}{Ali
+  et~al\mbox{.}}{2014}]%
+        {vmw-docker}
+\bibfield{author}{\bibinfo{person}{Qasim Ali}, \bibinfo{person}{Banit Agarwal},
+  {and} \bibinfo{person}{Davide Bergamasco}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \bibinfo{title}{Docker Containers Performance in VMware vSphere}.
+\newblock \bibinfo{howpublished}{\url{https://blogs.vmware.com/}}.
+  (\bibinfo{year}{2014}).
+\newblock
 
-\bibitem{zone}
-{\sc Beck, J., Comay, D., Ozgur, L., Price, D., Andy, T., Andrew, G., and
-  Blaise, S.}
-\newblock Virtualization and namespace isolation in the solaris operating
-  system (psarc/2002/174), 2006.
 
-\bibitem{turtle}
-{\sc Ben-Yehuda, M., Day, M.~D., Dubitzky, Z., Factor, M., Har'El, N., Gordon,
-  A., Liguori, A., Wasserman, O., and Yassour, B.-A.}
-\newblock The turtles project: Design and implementation of nested
-  virtualization.
-\newblock In {\em Proceedings of the 9th USENIX Conference on Operating Systems
-  Design and Implementation\/} (2010), pp.~423--436.
+\bibitem[\protect\citeauthoryear{Arcangeli, Eidus, and Wright}{Arcangeli
+  et~al\mbox{.}}{2009}]%
+        {ksmpaper}
+\bibfield{author}{\bibinfo{person}{Andrea Arcangeli}, \bibinfo{person}{Izik
+  Eidus}, {and} \bibinfo{person}{Chris Wright}.}
+  \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Increasing memory density by using KSM}. In
+  \bibinfo{booktitle}{{\em Proceedings of the Linux Symposium}}.
+  \bibinfo{publisher}{OLS}, \bibinfo{address}{Canada}, \bibinfo{pages}{19--28}.
+\newblock
 
-\bibitem{intercloud}
-{\sc Bernstein, D., Ludvigson, E., Sankar, K., Diamond, S., and Morrow, M.}
-\newblock Blueprint for the intercloud - protocols and formats for cloud
-  computing interoperability.
-\newblock In {\em Proceedings of the Fourth International Conference on
-  Internet and Web Applications and Services\/} (2009), pp.~328--336.
 
-\bibitem{tws}
-{\sc Chiang, J.-H., Li, H.-L., and Chiueh, T.-c.}
-\newblock Working set-based physical memory ballooning.
-\newblock In {\em Proceedings of the 10th International Conference on Autonomic
-  Computing\/} (2013).
+\bibitem[\protect\citeauthoryear{Barham, Dragovic, Fraser, Hand, Harris, Ho,
+  Neugebauer, Pratt, and Warfield}{Barham et~al\mbox{.}}{2003}]%
+        {xen}
+\bibfield{author}{\bibinfo{person}{Paul Barham}, \bibinfo{person}{Boris
+  Dragovic}, \bibinfo{person}{Keir Fraser}, \bibinfo{person}{Steven Hand},
+  \bibinfo{person}{Tim Harris}, \bibinfo{person}{Alex Ho},
+  \bibinfo{person}{Rolf Neugebauer}, \bibinfo{person}{Ian Pratt}, {and}
+  \bibinfo{person}{Andrew Warfield}.} \bibinfo{year}{2003}\natexlab{}.
+\newblock \showarticletitle{Xen and the art of virtualization}.
+\newblock \bibinfo{journal}{{\em SIGOPS Operating Systems Review\/}}
+  \bibinfo{volume}{37}, \bibinfo{number}{5} (\bibinfo{date}{Oct.}
+  \bibinfo{year}{2003}), \bibinfo{pages}{164--177}.
+\newblock
 
-\bibitem{ycsb}
-{\sc Cooper, B.~F., Silberstein, A., Tam, E., Ramakrishnan, R., and Sears, R.}
-\newblock Benchmarking cloud serving systems with ycsb.
-\newblock In {\em Proceedings of the 1st ACM Symposium on Cloud Computing\/}
-  (2010), pp.~143--154.
 
-\bibitem{zcache}
-{\sc Corbet, J.}
-\newblock zcache: a compressed page cache.
-\newblock \url{www.lwn.net/Articles/397574/}.
-\newblock Accessed: 2016-11-18.
+\bibitem[\protect\citeauthoryear{Barker, Wood, Shenoy, and Sitaraman}{Barker
+  et~al\mbox{.}}{2012}]%
+        {utc}
+\bibfield{author}{\bibinfo{person}{Sean Barker}, \bibinfo{person}{Timothy
+  Wood}, \bibinfo{person}{Prashant Shenoy}, {and} \bibinfo{person}{Ramesh
+  Sitaraman}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{An empirical study of memory sharing in virtual
+  machines}. In \bibinfo{booktitle}{{\em Proceedings of the USENIX Annual
+  Technical Conference}}. \bibinfo{publisher}{USENIX},
+  \bibinfo{address}{Berkley, CA, USA}, \bibinfo{pages}{273--284}.
+\newblock
 
-\bibitem{wss}
-{\sc Denning, P.~J.}
-\newblock The working set model for program behavior.
-\newblock {\em Communications of ACM 11}, 5 (1968), 323--333.
 
-\bibitem{docker}
-{\sc Docker}.
-\newblock Docker.
-\newblock \url {https://www.docker.com/}.
-\newblock Accessed: 2016-11-18.
+\bibitem[\protect\citeauthoryear{Beck, Comay, Ozgur, Price, Andy, Andrew, and
+  Blaise}{Beck et~al\mbox{.}}{2006}]%
+        {zone}
+\bibfield{author}{\bibinfo{person}{John Beck}, \bibinfo{person}{D Comay},
+  \bibinfo{person}{L Ozgur}, \bibinfo{person}{D Price}, \bibinfo{person}{T
+  Andy}, \bibinfo{person}{G Andrew}, {and} \bibinfo{person}{S Blaise}.}
+  \bibinfo{year}{2006}\natexlab{}.
+\newblock \bibinfo{title}{Virtualization and Namespace Isolation in the Solaris
+  Operating System (psarc/2002/174)}.
+\newblock   (\bibinfo{year}{2006}).
+\newblock
 
-\bibitem{memcached}
-{\sc Fitzpatrick, B.}
-\newblock Distributed caching with memcached.
-\newblock {\em Linux J. 2004}, 124 (2004).
 
-\bibitem{vx32}
-{\sc Ford, B., and Cox, R.}
-\newblock Vx32: Lightweight user-level sandboxing on the x86.
-\newblock In {\em Proceedings of the USENIX Annual Technical conference\/}
-  (2008), pp.~293--306.
+\bibitem[\protect\citeauthoryear{Ben-Yehuda, Day, Dubitzky, Factor, Har'El,
+  Gordon, Liguori, Wasserman, and Yassour}{Ben-Yehuda et~al\mbox{.}}{2010}]%
+        {turtle}
+\bibfield{author}{\bibinfo{person}{Muli Ben-Yehuda},
+  \bibinfo{person}{Michael~D. Day}, \bibinfo{person}{Zvi Dubitzky},
+  \bibinfo{person}{Michael Factor}, \bibinfo{person}{Nadav Har'El},
+  \bibinfo{person}{Abel Gordon}, \bibinfo{person}{Anthony Liguori},
+  \bibinfo{person}{Orit Wasserman}, {and} \bibinfo{person}{Ben-Ami Yassour}.}
+  \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{The Turtles Project: Design and Implementation of
+  Nested Virtualization}. In \bibinfo{booktitle}{{\em Proceedings of the 9th
+  USENIX Conference on Operating Systems Design and Implementation}}.
+  \bibinfo{publisher}{USENIX}, \bibinfo{address}{Berkley, CA, USA},
+  \bibinfo{pages}{423--436}.
+\newblock
 
-\bibitem{recursv}
-{\sc Ford, B., Hibler, M., Lepreau, J., Tullmann, P., Back, G., and Clawson,
-  S.}
-\newblock Microkernels meet recursive virtual machines.
-\newblock {\em SIGOPS Operating Systems Review 30}, SI (1996), 137--151.
 
-\bibitem{google}
-{\sc Google}.
-\newblock Google cloud platform.
-\newblock \url {https://cloud.google.com/container-engine}.
-\newblock Accessed: 2016-11-18.
+\bibitem[\protect\citeauthoryear{Bernstein, Ludvigson, Sankar, Diamond, and
+  Morrow}{Bernstein et~al\mbox{.}}{2009}]%
+        {intercloud}
+\bibfield{author}{\bibinfo{person}{David Bernstein}, \bibinfo{person}{Erik
+  Ludvigson}, \bibinfo{person}{Krishna Sankar}, \bibinfo{person}{Steve
+  Diamond}, {and} \bibinfo{person}{Monique Morrow}.}
+  \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Blueprint for the Intercloud - Protocols and
+  Formats for Cloud Computing Interoperability}. In \bibinfo{booktitle}{{\em
+  Proceedings of the Fourth International Conference on Internet and Web
+  Applications and Services}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Washington, DC, USA}, \bibinfo{pages}{328--336}.
+\newblock
+\showISBNx{978-0-7695-3613-2}
 
-\bibitem{jail}
-{\sc henning Kamp, P., and Watson, R. N.~M.}
-\newblock Jails: Confining the omnipotent root.
-\newblock In {\em Proceedings of the second International SANE Conference\/}
-  (2000).
 
-\bibitem{heroku}
-{\sc Heroku}.
-\newblock The heroku platform.
-\newblock \url {https://www.heroku.com/platform}.
-\newblock Accessed: 2016-11-18.
+\bibitem[\protect\citeauthoryear{Chiang, Li, and Chiueh}{Chiang
+  et~al\mbox{.}}{2013}]%
+        {tws}
+\bibfield{author}{\bibinfo{person}{Jui-Hao Chiang}, \bibinfo{person}{Han-Lin
+  Li}, {and} \bibinfo{person}{Tzi-cker Chiueh}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Working Set-based Physical Memory Ballooning}. In
+  \bibinfo{booktitle}{{\em Proceedings of the 10th International Conference on
+  Autonomic Computing}}. \bibinfo{publisher}{USENIX},
+  \bibinfo{address}{Berkley, CA, USA}, \bibinfo{pages}{95--99}.
+\newblock
 
-\bibitem{mortar}
-{\sc Hwang, J., Uppal, A., Wood, T., and Huang, H.}
-\newblock Mortar: Filling the gaps in data center memory.
-\newblock In {\em Proceedings of the 10th international conference on Virtual
-  Execution Environments\/} (2014).
 
-\bibitem{intelmanual}
-{\sc Intel}.
-\newblock Intel® 64 and ia-32 architectures developer's manual: Vol. 3b.
-\newblock \url{www.intel.com}, 2016.
+\bibitem[\protect\citeauthoryear{Cooper, Silberstein, Tam, Ramakrishnan, and
+  Sears}{Cooper et~al\mbox{.}}{2010}]%
+        {ycsb}
+\bibfield{author}{\bibinfo{person}{Brian~F. Cooper}, \bibinfo{person}{Adam
+  Silberstein}, \bibinfo{person}{Erwin Tam}, \bibinfo{person}{Raghu
+  Ramakrishnan}, {and} \bibinfo{person}{Russell Sears}.}
+  \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{Benchmarking Cloud Serving Systems with YCSB}. In
+  \bibinfo{booktitle}{{\em Proceedings of the 1st ACM Symposium on Cloud
+  Computing}}. \bibinfo{publisher}{ACM}, \bibinfo{address}{New York, NY, USA},
+  \bibinfo{pages}{143--154}.
+\newblock
+\showISBNx{978-1-4503-0036-0}
 
-\bibitem{geiger}
-{\sc Jones, S.~T., Arpaci-Dusseau, A.~C., and Arpaci-Dusseau, R.~H.}
-\newblock Geiger: Monitoring the buffer cache in a virtual machine environment.
-\newblock {\em SIGOPS Operating Systems Review 40}, 5 (2006), 14--24.
 
-\bibitem{kvm}
-{\sc Kivity, A.}
-\newblock {kvm: the Linux virtual machine monitor}.
-\newblock In {\em Proceedings of the Linux Symposium\/} (July 2007),
-  pp.~225--230.
+\bibitem[\protect\citeauthoryear{Corbet}{Corbet}{2010}]%
+        {zcache}
+\bibfield{author}{\bibinfo{person}{J Corbet}.} \bibinfo{year}{2010}\natexlab{}.
+\newblock \bibinfo{title}{zcache: a compressed page cache}.
+\newblock \bibinfo{howpublished}{\url{www.lwn.net/Articles/397574/}}.
+  (\bibinfo{year}{2010}).
+\newblock
 
-\bibitem{centaur}
-{\sc Koller, R., Mashtizadeh, A., and Rangaswami, R.}
-\newblock Centaur: Host-side ssd caching for storage performance control.
-\newblock In {\em Proceedings of the 12th International Conference on Autonomic
-  Computing\/} (2015).
 
-\bibitem{cgroup}
-{\sc Linux}.
-\newblock Cgroup.
-\newblock \url
-  {https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt}.
-\newblock Accessed: 2016-11-18.
+\bibitem[\protect\citeauthoryear{Denning}{Denning}{1968}]%
+        {wss}
+\bibfield{author}{\bibinfo{person}{Peter~J. Denning}.}
+  \bibinfo{year}{1968}\natexlab{}.
+\newblock \showarticletitle{The working set model for program behavior}.
+\newblock \bibinfo{journal}{{\em Communications of ACM\/}}
+  \bibinfo{volume}{11}, \bibinfo{number}{5} (\bibinfo{year}{1968}),
+  \bibinfo{pages}{323--333}.
+\newblock
 
-\bibitem{cleancache}
-{\sc Linux}.
-\newblock Kernel documentation: vm/cleancache.
-\newblock \url{www.kernel.org/doc/Documentation/vm/cleancache.txt}.
-\newblock Accessed: 2016-11-18.
 
-\bibitem{lxc}
-{\sc Linux}.
-\newblock Linux containers.
-\newblock \url {https://linuxcontainers.org/}.
-\newblock Accessed: 2016-11-18.
+\bibitem[\protect\citeauthoryear{Docker}{Docker}{2017}]%
+        {docker}
+\bibfield{author}{\bibinfo{person}{Docker}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \bibinfo{title}{Docker}.
+\newblock \bibinfo{howpublished}{\url {https://www.docker.com/}}.
+  (\bibinfo{year}{2017}).
+\newblock
+\newblock
+\shownote{Accessed: 2016-11-18.}
 
-\bibitem{kvmconfig}
-{\sc Linux}.
-\newblock Tuning kvm.
-\newblock \url {http://www.linux-kvm.org/page/Tuning\_KVM}.
-\newblock Accessed: 2016-11-18.
 
-\bibitem{vmmexclusive}
-{\sc Lu, P., and Shen, K.}
-\newblock Virtual machine memory access tracing with hypervisor exclusive
-  cache.
-\newblock In {\em Proceedings of the USENIX Annual Technical Conference\/}
-  (2007), pp.~3:1--3:15.
+\bibitem[\protect\citeauthoryear{Fitzpatrick}{Fitzpatrick}{2004}]%
+        {memcached}
+\bibfield{author}{\bibinfo{person}{Brad Fitzpatrick}.}
+  \bibinfo{year}{2004}\natexlab{}.
+\newblock \bibinfo{title}{Distributed Caching with Memcached}.
+\newblock \bibinfo{howpublished}{Linux Joutnal}.   (\bibinfo{year}{2004}).
+\newblock
 
-\bibitem{oracletmem}
-{\sc Magenheimer, D.}
-\newblock Update on transcendent memory on xen.
-\newblock Xen Summit 2010, 2016.
 
-\bibitem{memtrans}
-{\sc Magenheimer, D., Mason, C., McCracken, D., and Hackel, K.}
-\newblock Transcendent memory and linux.
-\newblock In {\em Proceedings of Linux Symposium\/} (2009), pp.~191--200.
+\bibitem[\protect\citeauthoryear{Ford and Cox}{Ford and Cox}{2008}]%
+        {vx32}
+\bibfield{author}{\bibinfo{person}{Bryan Ford} {and} \bibinfo{person}{Russ
+  Cox}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Vx32: Lightweight User-level Sandboxing on the
+  x86}. In \bibinfo{booktitle}{{\em Proceedings of the USENIX Annual Technical
+  conference}}. \bibinfo{publisher}{USENIX}, \bibinfo{address}{Berkley, CA,
+  USA}, \bibinfo{pages}{293--306}.
+\newblock
 
-\bibitem{satori}
-{\sc Mi\l\'{o}s, G., Murray, D.~G., Hand, S., and Fetterman, M.~A.}
-\newblock Satori: enlightened page sharing.
-\newblock In {\em Proceedings of the USENIX Annual Technical conference\/}
-  (2009).
 
-\bibitem{kvmzcache}
-{\sc Mishra, D., and Kulkarni, P.}
-\newblock Comparative analysis of page cache provisioning in virtualized
-  environments.
-\newblock In {\em Proceedings of 22nd conference on Modelling, Analysis
-  Simulation of Computer and Telecommunication Systems (MASCOTS)\/} (2014),
-  pp.~213--222.
+\bibitem[\protect\citeauthoryear{Ford, Hibler, Lepreau, Tullmann, Back, and
+  Clawson}{Ford et~al\mbox{.}}{1996}]%
+        {recursv}
+\bibfield{author}{\bibinfo{person}{Bryan Ford}, \bibinfo{person}{Mike Hibler},
+  \bibinfo{person}{Jay Lepreau}, \bibinfo{person}{Patrick Tullmann},
+  \bibinfo{person}{Godmar Back}, {and} \bibinfo{person}{Stephen Clawson}.}
+  \bibinfo{year}{1996}\natexlab{}.
+\newblock \showarticletitle{Microkernels Meet Recursive Virtual Machines}.
+\newblock \bibinfo{journal}{{\em SIGOPS Operating Systems Review\/}}
+  \bibinfo{volume}{30}, \bibinfo{number}{SI} (\bibinfo{year}{1996}),
+  \bibinfo{pages}{137--151}.
+\newblock
+\showISSN{0163-5980}
 
-\bibitem{synergy}
-{\sc Mishra, D., Kulkarni, P., and Rangaswami, R.}
-\newblock Synergy: A hypervisor managed holistic caching system.
-\newblock {\em IEEE Transactions on Cloud Computing pre-print\/} (2017).
 
-\bibitem{picloud}
-{\sc PI}.
-\newblock Pi cloud services.
-\newblock \url {https://www.picloudservices.com/}.
-\newblock Accessed: 2016-11-18.
+\bibitem[\protect\citeauthoryear{Google}{Google}{2017}]%
+        {google}
+\bibfield{author}{\bibinfo{person}{Google}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \bibinfo{title}{Google Cloud Platform}.
+\newblock \bibinfo{howpublished}{\url
+  {https://cloud.google.com/container-engine}}.   (\bibinfo{year}{2017}).
+\newblock
 
-\bibitem{hotplug}
-{\sc Schopp, J., Fraser, K., and Silbermann, M.}
-\newblock Resizing memory with balloons and hotplug.
-\newblock In {\em Proceedings of Linux Symposium\/} (2006), pp.~313--319.
 
-\bibitem{middleware16}
-{\sc Sharma, P., Chaufournier, L., Shenoy, P., and Tay, Y.~C.}
-\newblock Containers and virtual machines at scale: A comparative study.
-\newblock In {\em Proceedings of the 17th International Middleware
-  Conference\/} (2016).
+\bibitem[\protect\citeauthoryear{henning Kamp and Watson}{henning Kamp and
+  Watson}{2000}]%
+        {jail}
+\bibfield{author}{\bibinfo{person}{Poul henning Kamp} {and}
+  \bibinfo{person}{Robert N.~M. Watson}.} \bibinfo{year}{2000}\natexlab{}.
+\newblock \bibinfo{title}{Jails: Confining the omnipotent root}.
+\newblock   (\bibinfo{year}{2000}).
+\newblock
 
-\bibitem{singleton}
-{\sc Sharma, P., and Kulkarni, P.}
-\newblock Singleton: system-wide page deduplication in virtual environments.
-\newblock In {\em Proceedings of the 21st international symposium on
-  High-Performance Parallel and Distributed Computing\/} (2012), pp.~15--26.
 
-\bibitem{spotcheck}
-{\sc Sharma, P., Lee, S., Guo, T., Irwin, D., and Shenoy, P.}
-\newblock Spotcheck: Designing a derivative iaas cloud on the spot market.
-\newblock In {\em Proceedings of the Tenth European Conference on Computer
-  Systems\/} (2015), pp.~16:1--16:15.
+\bibitem[\protect\citeauthoryear{Heroku}{Heroku}{2017}]%
+        {heroku}
+\bibfield{author}{\bibinfo{person}{Heroku}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \bibinfo{title}{The Heroku Platform}.
+\newblock \bibinfo{howpublished}{\url {https://www.heroku.com/platform}}.
+  (\bibinfo{year}{2017}).
+\newblock
 
-\bibitem{sdc}
-{\sc Stefanovici, I., Thereska, E., O'Shea, G., Schroeder, B., Ballani, H.,
-  Karagiannis, T., Rowstron, A., and Talpey, T.}
-\newblock Software-defined caching: Managing caches in multi-tenant data
-  centers.
-\newblock In {\em Proceedings of the Sixth ACM Symposium on Cloud Computing\/}
-  (2015), pp.~174--181.
 
-\bibitem{filebench}
-{\sc Sun}.
-\newblock Filebench.
-\newblock \url{www.filebench.sourceforge.net/wiki/index.php/Main_Page}.
-\newblock Accessed: 2016-11-18.
+\bibitem[\protect\citeauthoryear{Hwang, Uppal, Wood, and Huang}{Hwang
+  et~al\mbox{.}}{2014}]%
+        {mortar}
+\bibfield{author}{\bibinfo{person}{Jinho Hwang}, \bibinfo{person}{Ahsen Uppal},
+  \bibinfo{person}{Timothy Wood}, {and} \bibinfo{person}{H.Howie Huang}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Mortar: Filling the Gaps in Data Center Memory}. In
+  \bibinfo{booktitle}{{\em Proceedings of the 10th international conference on
+  Virtual Execution Environments}}. \bibinfo{publisher}{ACM},
+  \bibinfo{address}{New York, NY, USA}, \bibinfo{pages}{53--64}.
+\newblock
 
-\bibitem{extmem}
-{\sc Venkatesan, V., Wei, Q., and Tay, Y.}
-\newblock Ex-tmem: Extending transcendent memory with non-volatile memory for
-  virtual machines.
-\newblock In {\em Proceedings of 16th conference on High Performance Computing
-  and Communications\/} (2014).
 
-\bibitem{vmware:memory}
-{\sc {VMware}}.
-\newblock {The Role of Memory in VMware ESX Server 3}.
-\newblock \url{http://www.vmware.com/pdf/esx3_memory.pdf}, 2016.
+\bibitem[\protect\citeauthoryear{Intel}{Intel}{2016}]%
+        {intelmanual}
+\bibfield{author}{\bibinfo{person}{Intel}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \bibinfo{title}{Intel® 64 and IA-32 Architectures Developer's
+  Manual: Vol. 3B}.
+\newblock \bibinfo{howpublished}{\url{www.intel.com}}.
+  (\bibinfo{year}{2016}).
+\newblock
 
-\bibitem{vmware}
-{\sc Waldspurger, C.~A.}
-\newblock Memory resource management in vmware esx server.
-\newblock {\em SIGOPS Operating Systems Review 36}, SI (Dec. 2002), 181--194.
 
-\bibitem{shards}
-{\sc Waldspurger, C.~A., Park, N., Garthwaite, A., and Ahmad, I.}
-\newblock Efficient mrc construction with shards.
-\newblock In {\em Proceedings of the 13th USENIX Conference on File and Storage
-  Technologies\/} (2015), pp.~95--110.
+\bibitem[\protect\citeauthoryear{Jones, Arpaci-Dusseau, and
+  Arpaci-Dusseau}{Jones et~al\mbox{.}}{2006}]%
+        {geiger}
+\bibfield{author}{\bibinfo{person}{Stephen~T. Jones},
+  \bibinfo{person}{Andrea~C. Arpaci-Dusseau}, {and} \bibinfo{person}{Remzi~H.
+  Arpaci-Dusseau}.} \bibinfo{year}{2006}\natexlab{}.
+\newblock \showarticletitle{Geiger: Monitoring the Buffer Cache in a Virtual
+  Machine Environment}.
+\newblock \bibinfo{journal}{{\em SIGOPS Operating Systems Review\/}}
+  \bibinfo{volume}{40}, \bibinfo{number}{5} (\bibinfo{year}{2006}),
+  \bibinfo{pages}{14--24}.
+\newblock
 
-\bibitem{blanket}
-{\sc Williams, D., Jamjoom, H., and Weatherspoon, H.}
-\newblock The xen-blanket: Virtualize once, run everywhere.
-\newblock In {\em Proceedings of the 7th ACM European Conference on Computer
-  Systems\/} (2012), pp.~113--126.
 
-\bibitem{supercloud}
-{\sc Williams, D., Jamjoom, H., and Weatherspoon, H.}
-\newblock Plug into the supercloud.
-\newblock {\em IEEE Internet Computing 17}, 2 (2013), 28--34.
+\bibitem[\protect\citeauthoryear{Kivity}{Kivity}{2007}]%
+        {kvm}
+\bibfield{author}{\bibinfo{person}{Avi Kivity}.}
+  \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{{kvm: the Linux virtual machine monitor}}. In
+  \bibinfo{booktitle}{{\em Proceedings of the Linux Symposium}}.
+  \bibinfo{publisher}{OLS}, \bibinfo{address}{Canada},
+  \bibinfo{pages}{225--230}.
+\newblock
 
-\bibitem{membud}
-{\sc Wood, T., Tarasuk-Levin, G., Shenoy, P., Desnoyers, P., Cecchet, E., and
-  Corner, M.~D.}
-\newblock Memory buddies: exploiting page sharing for smart colocation in
-  virtualized data centers.
-\newblock In {\em Proceedings of the 5th international conference on Virtual
-  Execution Environments\/} (2009), pp.~31--40.
 
-\bibitem{wsslow}
-{\sc Zhao, W., Jin, X., Wang, Z., Wang, X., Luo, Y., and Li, X.}
-\newblock Low cost working set size tracking.
-\newblock In {\em Proceedings of the USENIX Annual Technical Conference\/}
-  (2011).
+\bibitem[\protect\citeauthoryear{Koller, Mashtizadeh, and Rangaswami}{Koller
+  et~al\mbox{.}}{2015}]%
+        {centaur}
+\bibfield{author}{\bibinfo{person}{Ricardo Koller}, \bibinfo{person}{Ali
+  Mashtizadeh}, {and} \bibinfo{person}{Raju Rangaswami}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Centaur: Host-side SSD Caching for Storage
+  Performance Control}. In \bibinfo{booktitle}{{\em Proceedings of the 12th
+  International Conference on Autonomic Computing}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Washington, DC, USA}, \bibinfo{pages}{51--60}.
+\newblock
 
-\bibitem{membal}
-{\sc Zhao, W., and Wang, Z.}
-\newblock Dynamic memory balancing for virtual machines.
-\newblock In {\em Proceedings of the 5th International Conference on Virtual
-  Execution Environments\/} (2009), pp.~21--30.
 
-\bibitem{mrc}
-{\sc Zhou, P., Pandey, V., Sundaresan, J., Raghuraman, A., Zhou, Y., and Kumar,
-  S.}
-\newblock Dynamic tracking of page miss ratio curve for memory management.
-\newblock In {\em Proceedings of the 11th conference on Architectural support
-  for programming languages and operating systems (ASPLOS)\/} (2004),
-  pp.~177--188.
+\bibitem[\protect\citeauthoryear{Linux}{Linux}{2017a}]%
+        {cgroup}
+\bibfield{author}{\bibinfo{person}{Linux}.} \bibinfo{year}{2017}\natexlab{a}.
+\newblock \bibinfo{title}{CGROUP}.
+\newblock \bibinfo{howpublished}{\url
+  {https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt}}.
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Linux}{Linux}{2017b}]%
+        {cleancache}
+\bibfield{author}{\bibinfo{person}{Linux}.} \bibinfo{year}{2017}\natexlab{b}.
+\newblock \bibinfo{title}{Kernel Documentation: vm/cleancache}.
+\newblock
+  \bibinfo{howpublished}{\url{www.kernel.org/doc/Documentation/vm/cleancache.txt}}.
+    (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Linux}{Linux}{2017c}]%
+        {lxc}
+\bibfield{author}{\bibinfo{person}{Linux}.} \bibinfo{year}{2017}\natexlab{c}.
+\newblock \bibinfo{title}{Linux Containers}.
+\newblock \bibinfo{howpublished}{\url {https://linuxcontainers.org/}}.
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Linux}{Linux}{2017d}]%
+        {kvmconfig}
+\bibfield{author}{\bibinfo{person}{Linux}.} \bibinfo{year}{2017}\natexlab{d}.
+\newblock \bibinfo{title}{Tuning KVM}.
+\newblock \bibinfo{howpublished}{\url
+  {http://www.linux-kvm.org/page/Tuning\_KVM}}.   (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Lu and Shen}{Lu and Shen}{2007}]%
+        {vmmexclusive}
+\bibfield{author}{\bibinfo{person}{Pin Lu} {and} \bibinfo{person}{Kai Shen}.}
+  \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{Virtual Machine Memory Access Tracing with
+  Hypervisor Exclusive Cache}. In \bibinfo{booktitle}{{\em Proceedings of the
+  USENIX Annual Technical Conference}}. \bibinfo{publisher}{USENIX},
+  \bibinfo{address}{Berkley, CA, USA}, \bibinfo{pages}{3:1--3:15}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Magenheimer}{Magenheimer}{2016}]%
+        {oracletmem}
+\bibfield{author}{\bibinfo{person}{D Magenheimer}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \bibinfo{title}{Update on transcendent memory on Xen}.
+\newblock \bibinfo{howpublished}{Xen Summit 2010}.   (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Magenheimer, Mason, McCracken, and
+  Hackel}{Magenheimer et~al\mbox{.}}{2009}]%
+        {memtrans}
+\bibfield{author}{\bibinfo{person}{D Magenheimer}, \bibinfo{person}{C Mason},
+  \bibinfo{person}{D McCracken}, {and} \bibinfo{person}{K" Hackel}.}
+  \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Transcendent memory and Linux.}. In
+  \bibinfo{booktitle}{{\em Proceedings of Linux Symposium}}.
+  \bibinfo{publisher}{OLS}, \bibinfo{address}{Canada},
+  \bibinfo{pages}{191--200}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mi\l\'{o}s, Murray, Hand, and
+  Fetterman}{Mi\l\'{o}s et~al\mbox{.}}{2009}]%
+        {satori}
+\bibfield{author}{\bibinfo{person}{Grzegorz Mi\l\'{o}s},
+  \bibinfo{person}{Derek~G. Murray}, \bibinfo{person}{Steven Hand}, {and}
+  \bibinfo{person}{Michael~A. Fetterman}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Satori: enlightened page sharing}. In
+  \bibinfo{booktitle}{{\em Proceedings of the USENIX Annual Technical
+  conference}}. \bibinfo{publisher}{USENIX}, \bibinfo{address}{Berkley, CA,
+  USA}, \bibinfo{pages}{1--14}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mishra and Kulkarni}{Mishra and
+  Kulkarni}{2014}]%
+        {kvmzcache}
+\bibfield{author}{\bibinfo{person}{Debadatta Mishra} {and}
+  \bibinfo{person}{Purushottam Kulkarni}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Comparative Analysis of Page Cache Provisioning in
+  Virtualized Environments}. In \bibinfo{booktitle}{{\em Proceedings of 22nd
+  conference on Modelling, Analysis Simulation of Computer and
+  Telecommunication Systems (MASCOTS)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Washington, DC, USA}, \bibinfo{pages}{213--222}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mishra, Kulkarni, and Rangaswami}{Mishra
+  et~al\mbox{.}}{2017}]%
+        {synergy}
+\bibfield{author}{\bibinfo{person}{Debadatta Mishra},
+  \bibinfo{person}{Purushottam Kulkarni}, {and} \bibinfo{person}{Raju
+  Rangaswami}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Synergy: A Hypervisor Managed Holistic Caching
+  System}.
+\newblock \bibinfo{journal}{{\em IEEE Transactions on Cloud Computing\/}}
+  \bibinfo{volume}{pre-print} (\bibinfo{year}{2017}), \bibinfo{pages}{1--14}.
+\newblock
+\showISSN{2168-7161}
+
+
+\bibitem[\protect\citeauthoryear{PI}{PI}{2017}]%
+        {picloud}
+\bibfield{author}{\bibinfo{person}{PI}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \bibinfo{title}{PI Cloud Services}.
+\newblock \bibinfo{howpublished}{\url {https://www.picloudservices.com/}}.
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Schopp, Fraser, and Silbermann}{Schopp
+  et~al\mbox{.}}{2006}]%
+        {hotplug}
+\bibfield{author}{\bibinfo{person}{J Schopp}, \bibinfo{person}{K Fraser}, {and}
+  \bibinfo{person}{M Silbermann}.} \bibinfo{year}{2006}\natexlab{}.
+\newblock \showarticletitle{Resizing memory with balloons and hotplug}. In
+  \bibinfo{booktitle}{{\em Proceedings of Linux Symposium}}.
+  \bibinfo{publisher}{OLS}, \bibinfo{address}{Canada},
+  \bibinfo{pages}{313--319}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sharma, Chaufournier, Shenoy, and Tay}{Sharma
+  et~al\mbox{.}}{2016}]%
+        {middleware16}
+\bibfield{author}{\bibinfo{person}{Prateek Sharma}, \bibinfo{person}{Lucas
+  Chaufournier}, \bibinfo{person}{Prashant Shenoy}, {and}
+  \bibinfo{person}{Y.~C. Tay}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Containers and Virtual Machines at Scale: A
+  Comparative Study}. In \bibinfo{booktitle}{{\em Proceedings of the 17th
+  International Middleware Conference}}. \bibinfo{publisher}{ACM},
+  \bibinfo{address}{New York, NY, USA}, Article \bibinfo{articleno}{1},
+  \bibinfo{numpages}{13}~pages.
+\newblock
+\showISBNx{978-1-4503-4300-8}
+
+
+\bibitem[\protect\citeauthoryear{Sharma and Kulkarni}{Sharma and
+  Kulkarni}{2012}]%
+        {singleton}
+\bibfield{author}{\bibinfo{person}{Prateek Sharma} {and}
+  \bibinfo{person}{Purushottam Kulkarni}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{Singleton: system-wide page deduplication in
+  virtual environments}. In \bibinfo{booktitle}{{\em Proceedings of the 21st
+  international symposium on High-Performance Parallel and Distributed
+  Computing}}. \bibinfo{publisher}{ACM}, \bibinfo{address}{New York, NY, USA},
+  \bibinfo{pages}{15--26}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sharma, Lee, Guo, Irwin, and Shenoy}{Sharma
+  et~al\mbox{.}}{2015}]%
+        {spotcheck}
+\bibfield{author}{\bibinfo{person}{Prateek Sharma}, \bibinfo{person}{Stephen
+  Lee}, \bibinfo{person}{Tian Guo}, \bibinfo{person}{David Irwin}, {and}
+  \bibinfo{person}{Prashant Shenoy}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{SpotCheck: Designing a Derivative IaaS Cloud on the
+  Spot Market}. In \bibinfo{booktitle}{{\em Proceedings of the Tenth European
+  Conference on Computer Systems}}. \bibinfo{publisher}{ACM},
+  \bibinfo{address}{New York, NY, USA}, Article \bibinfo{articleno}{16},
+  \bibinfo{numpages}{15}~pages.
+\newblock
+\showISBNx{978-1-4503-3238-5}
+
+
+\bibitem[\protect\citeauthoryear{Stefanovici, Thereska, O'Shea, Schroeder,
+  Ballani, Karagiannis, Rowstron, and Talpey}{Stefanovici
+  et~al\mbox{.}}{2015}]%
+        {sdc}
+\bibfield{author}{\bibinfo{person}{Ioan Stefanovici}, \bibinfo{person}{Eno
+  Thereska}, \bibinfo{person}{Greg O'Shea}, \bibinfo{person}{Bianca Schroeder},
+  \bibinfo{person}{Hitesh Ballani}, \bibinfo{person}{Thomas Karagiannis},
+  \bibinfo{person}{Antony Rowstron}, {and} \bibinfo{person}{Tom Talpey}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Software-defined Caching: Managing Caches in
+  Multi-tenant Data Centers}. In \bibinfo{booktitle}{{\em Proceedings of the
+  Sixth ACM Symposium on Cloud Computing}}. \bibinfo{publisher}{ACM},
+  \bibinfo{address}{New York, NY, USA}, \bibinfo{pages}{174--181}.
+\newblock
+\showISBNx{978-1-4503-3651-2}
+
+
+\bibitem[\protect\citeauthoryear{Sun}{Sun}{2017}]%
+        {filebench}
+\bibfield{author}{\bibinfo{person}{Sun}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \bibinfo{title}{FileBench}.
+\newblock
+  \bibinfo{howpublished}{\url{www.filebench.sourceforge.net/wiki/index.php/Main_Page}}.
+    (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Venkatesan, Wei, and Tay}{Venkatesan
+  et~al\mbox{.}}{2014}]%
+        {extmem}
+\bibfield{author}{\bibinfo{person}{Vimalraj Venkatesan},
+  \bibinfo{person}{Qingsong Wei}, {and} \bibinfo{person}{Y.C. Tay}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Ex-Tmem: Extending Transcendent Memory with
+  Non-volatile Memory for Virtual Machines}. In \bibinfo{booktitle}{{\em
+  Proceedings of 16th conference on High Performance Computing and
+  Communications}}. \bibinfo{publisher}{IEEE}, \bibinfo{address}{Washington,
+  DC, USA}, \bibinfo{pages}{966--973}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{{VMware}}{{VMware}}{2016}]%
+        {vmware:memory}
+\bibfield{author}{\bibinfo{person}{{VMware}}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \bibinfo{title}{{The Role of Memory in VMware ESX Server 3}}.
+\newblock
+  \bibinfo{howpublished}{\url{http://www.vmware.com/pdf/esx3_memory.pdf}}.
+  (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Waldspurger}{Waldspurger}{2002}]%
+        {vmware}
+\bibfield{author}{\bibinfo{person}{Carl~A. Waldspurger}.}
+  \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{Memory resource management in VMware ESX server}.
+\newblock \bibinfo{journal}{{\em SIGOPS Operating Systems Review\/}}
+  \bibinfo{volume}{36}, \bibinfo{number}{SI} (\bibinfo{date}{Dec.}
+  \bibinfo{year}{2002}), \bibinfo{pages}{181--194}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Waldspurger, Park, Garthwaite, and
+  Ahmad}{Waldspurger et~al\mbox{.}}{2015}]%
+        {shards}
+\bibfield{author}{\bibinfo{person}{Carl~A. Waldspurger},
+  \bibinfo{person}{Nohhyun Park}, \bibinfo{person}{Alexander Garthwaite}, {and}
+  \bibinfo{person}{Irfan Ahmad}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Efficient MRC Construction with SHARDS}. In
+  \bibinfo{booktitle}{{\em Proceedings of the 13th USENIX Conference on File
+  and Storage Technologies}}. \bibinfo{publisher}{USENIX},
+  \bibinfo{address}{Berkley, CA, USA}, \bibinfo{pages}{95--110}.
+\newblock
+\showISBNx{978-1-931971-201}
+
+
+\bibitem[\protect\citeauthoryear{Williams, Jamjoom, and Weatherspoon}{Williams
+  et~al\mbox{.}}{2012}]%
+        {blanket}
+\bibfield{author}{\bibinfo{person}{Dan Williams}, \bibinfo{person}{Hani
+  Jamjoom}, {and} \bibinfo{person}{Hakim Weatherspoon}.}
+  \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{The Xen-Blanket: Virtualize Once, Run Everywhere}.
+  In \bibinfo{booktitle}{{\em Proceedings of the 7th ACM European Conference on
+  Computer Systems}}. \bibinfo{publisher}{ACM}, \bibinfo{address}{New York, NY,
+  USA}, \bibinfo{pages}{113--126}.
+\newblock
+\showISBNx{978-1-4503-1223-3}
+
+
+\bibitem[\protect\citeauthoryear{Williams, Jamjoom, and Weatherspoon}{Williams
+  et~al\mbox{.}}{2013}]%
+        {supercloud}
+\bibfield{author}{\bibinfo{person}{D. Williams}, \bibinfo{person}{H. Jamjoom},
+  {and} \bibinfo{person}{H. Weatherspoon}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Plug into the Supercloud}.
+\newblock \bibinfo{journal}{{\em IEEE Internet Computing\/}}
+  \bibinfo{volume}{17}, \bibinfo{number}{2} (\bibinfo{year}{2013}),
+  \bibinfo{pages}{28--34}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wood, Tarasuk-Levin, Shenoy, Desnoyers,
+  Cecchet, and Corner}{Wood et~al\mbox{.}}{2009}]%
+        {membud}
+\bibfield{author}{\bibinfo{person}{Timothy Wood}, \bibinfo{person}{Gabriel
+  Tarasuk-Levin}, \bibinfo{person}{Prashant Shenoy}, \bibinfo{person}{Peter
+  Desnoyers}, \bibinfo{person}{Emmanuel Cecchet}, {and}
+  \bibinfo{person}{Mark~D. Corner}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Memory buddies: exploiting page sharing for smart
+  colocation in virtualized data centers}. In \bibinfo{booktitle}{{\em
+  Proceedings of the 5th international conference on Virtual Execution
+  Environments}}. \bibinfo{publisher}{ACM}, \bibinfo{address}{New York, NY,
+  USA}, \bibinfo{pages}{31--40}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhao, Jin, Wang, Wang, Luo, and Li}{Zhao
+  et~al\mbox{.}}{2011}]%
+        {wsslow}
+\bibfield{author}{\bibinfo{person}{Weiming Zhao}, \bibinfo{person}{Xinxin Jin},
+  \bibinfo{person}{Zhenlin Wang}, \bibinfo{person}{Xiaolin Wang},
+  \bibinfo{person}{Yingwei Luo}, {and} \bibinfo{person}{Xiaoming Li}.}
+  \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{Low cost working set size tracking}. In
+  \bibinfo{booktitle}{{\em Proceedings of the USENIX Annual Technical
+  Conference}}. \bibinfo{publisher}{USENIX}, \bibinfo{address}{Berkley, CA,
+  USA}, \bibinfo{pages}{17--22}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhao and Wang}{Zhao and Wang}{2009}]%
+        {membal}
+\bibfield{author}{\bibinfo{person}{Weiming Zhao} {and} \bibinfo{person}{Zhenlin
+  Wang}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Dynamic memory balancing for virtual machines}. In
+  \bibinfo{booktitle}{{\em Proceedings of the 5th International Conference on
+  Virtual Execution Environments}}. \bibinfo{publisher}{ACM},
+  \bibinfo{address}{New York, NY, USA}, \bibinfo{pages}{21--30}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhou, Pandey, Sundaresan, Raghuraman, Zhou,
+  and Kumar}{Zhou et~al\mbox{.}}{2004}]%
+        {mrc}
+\bibfield{author}{\bibinfo{person}{Pin Zhou}, \bibinfo{person}{Vivek Pandey},
+  \bibinfo{person}{Jagadeesan Sundaresan}, \bibinfo{person}{Anand Raghuraman},
+  \bibinfo{person}{Yuanyuan Zhou}, {and} \bibinfo{person}{Sanjeev Kumar}.}
+  \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{Dynamic tracking of page miss ratio curve for
+  memory management}. In \bibinfo{booktitle}{{\em Proceedings of the 11th
+  conference on Architectural support for programming languages and operating
+  systems (ASPLOS)}}. \bibinfo{publisher}{ACM}, \bibinfo{address}{New York, NY,
+  USA}, \bibinfo{pages}{177--188}.
+\newblock
+
 
 \end{thebibliography}
