@@ -1,0 +1,67 @@
+Start 
+gets:7597 sgets:0 puts:0 flushes:0 evicts:0
+=======APPLICATION OUTPUT==========
+========== Container 2 Memory STATS ==============
+cache 7753728
+rss 6701056
+rss_huge 0
+mapped_file 7684096
+writeback 0
+pgpgin 79806
+pgpgout 76277
+pgfault 178864
+pgmajfault 184
+inactive_anon 69632
+active_anon 6701056
+inactive_file 3379200
+active_file 4304896
+unevictable 0
+hierarchical_memory_limit 999997440
+total_cache 7753728
+total_rss 6701056
+total_rss_huge 0
+total_mapped_file 7684096
+total_writeback 0
+total_pgpgin 79806
+total_pgpgout 76277
+total_pgfault 178864
+total_pgmajfault 184
+total_inactive_anon 69632
+total_active_anon 6701056
+total_inactive_file 3379200
+total_active_file 4304896
+total_unevictable 0
+======== END Container STATS ======
+========== Container 2 Memory STATS AT END ==============
+cache 11730944
+rss 6705152
+rss_huge 0
+mapped_file 7872512
+writeback 0
+pgpgin 81553
+pgpgout 77052
+pgfault 180858
+pgmajfault 221
+inactive_anon 69632
+active_anon 6705152
+inactive_file 4403200
+active_file 7258112
+unevictable 0
+hierarchical_memory_limit 999997440
+total_cache 11730944
+total_rss 6705152
+total_rss_huge 0
+total_mapped_file 7872512
+total_writeback 0
+total_pgpgin 81553
+total_pgpgout 77052
+total_pgfault 180858
+total_pgmajfault 221
+total_inactive_anon 69632
+total_active_anon 6705152
+total_inactive_file 4403200
+total_active_file 7258112
+total_unevictable 0
+======== END Container STATS ======
+=======END==========
+gets:8211 sgets:0 puts:0 flushes:0 evicts:0

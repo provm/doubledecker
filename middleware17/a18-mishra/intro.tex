@@ -1,0 +1,409 @@
+\section{Introduction}
+\label{sec:intro}
+
+A vital enabler for high consolidation ratios of virtual machines
+in virtualization based hosting platforms
+is memory overcommitment~\cite{vmware,vmware:memory}. 
+%
+The key idea of techniques relying on
+overcommitment is to exploit the tradeoff between
+dynamic memory provisioning and usage efficiency, and 
+performance implications.
+%
+%Efficient memory management in virtualized
+%systems enables increased virtual machine {\em consolidation density} 
+%through higher levels of memory utilization.
+%
+%where at the system level hypervisors are agnostic of the nesting
+%and guest operating systems have no defined interfaces for 
+%providing information for explicit container-level resource
+%provisioning.
+%Increased memory efficiency results in higher levels of hardware
+%availability and cost efficiency in terms of hardware,
+%maintenance and power.
+%
+%Additional software layers in systems hosting multiple isolated execution 
+%domains---hypervisors in virtualized systems~\cite{xen,kvm,vmware}, and,
+%hypervisors and/or container 
+%frameworks in nested virtualized systems~\cite{cgroup,docker,lxc}---present 
+%several challenges in efficient resource management.
+%
+The challenge of memory management in virtualized systems~\cite{xen,kvm,vmware}
+and container-based systems~\cite{cgroup,docker,lxc} is 
+the opaqueness between the resource manager (the hypervisor or
+the host operating system) and the resource user (guest operating
+systems or applications).
+%
+%One of the main bottlenecks in these systems is the increased 
+%opaqueness between the resource manager (hypervisor) and 
+%the resource user (applications).
+%
+Techniques like dynamic ballooning~\cite{vmware,hotplug}, memory
+content deduplication~\cite{vmware,ksmpaper} and hypervisor 
+caching~\cite{memtrans,oracletmem,kvmzcache, geiger} 
+%address the challenges by enabling 
+enable dynamic provisioning, increased memory efficiency and 
+system level disk cache provisioning for efficient memory 
+management. % in virtualized systems.
+%
+While these techniques and associated policies have been studied
+extensively in virtualization setups~\cite{vmware, membal, membud, kvmzcache, tws},
+they have not been studied in \emph{nested hosting} setups.
+%\revised{
+The central proposition of this work is that resource management
+techniques employed with single-level virtualization setups
+are inadequate in the context of nested-hosting setups 
+and require augmentation and re-design.
+%}
+
+%\revised{
+%Additional overheads due to nested virtualization layers~\cite{blanket,turtle}
+Overcoming the additional overheads due to nesting~\cite{blanket,turtle}
+has been one of the primary bottlenecks in realizing sub-tenancy
+models of cloud infrastructure services.
+%
+%Resource provisioning issues in nested settings gained less attention 
+%because of the additional virtualization overheads~\cite{blanker,turtule} 
+%in nested virtualization solutions discouraged its usage for enabling 
+%cloud infrastructure services.
+%
+Provisioning of one or more application containers inside VMs, 
+a recently popular nested hosting technique, has promising 
+potential considering 
+low virtualization overheads compared
+to nesting virtual machines~\cite{middleware16,vmw-docker}. 
+%
+%Containers inside VMs enable subletting business models 
+%like \emph{derivative cloud} model~\cite{spotcheck, google} which 
+%is the focus of this work.
+%
+The \emph{derivative cloud} model~\cite{spotcheck, google},
+instantiated with containers inside VMs, is the focus of this work.
+%
+In the derivative model, an intermediate service provider builds
+service offerings using services rented, leased or purchased.
+%
+The services themselves could be smaller sized versions of the
+first-level service or could be applications, and in general host
+other software-as-a-service or platform-as-a-service variants.
+%
+From the memory management perspective, with container based
+derivative clouds, the container-based nested services
+are provisioned and managed from within a virtual machine
+and resources for virtual machines are managed by the 
+hypervisor-level policy tools.
+%
+The notion of two isolated resource management entities with 
+different levels of visibility into their respective managed 
+components---containers at the virtual machine level and VMs at the
+hypervisor level, require careful analysis of design alternatives.
+%} 
+%
+%Containers are provisioned and managed by the VM administrators,
+%who may want to employ higher level QoS policies in terms of priority or
+%optimize the resource utilization depending on the application 
+%characteristics.
+%
+%For VMs enabled with hypervisor caches, the differentiated partitioning
+%Nested virtualization, recently popularized by application containers and 
+%{\em Derivative clouds}~\cite{spotcheck,google}, enables hosting 
+%application containers inside VMs.
+%
+%ballooning, deduplication and hypervisor caching is required to be 
+%to analyze
+%effectiveness in a nested virtualization setup.
+%nested virtualization framework to analyze their 
+%
+
+%\revised{
+%In this work, our focus is the use of hypervisor caching for
+%effective disk cache memory management in derivative clouds.
+%the focus is to explore the hypervisor caching solution space 
+%in nested hosting setups (containers inside VMs) and work out suitable 
+%enhancements to enable efficient hypervisor caching for nested application 
+%containers inside VMs.
+%
+%Memory used to cache disk content (a.k.a. page cache) can be
+%a major bottleneck for efficient memory management in virtualized
+%systems.
+Memory used to cache disk content is a significant part of the 
+system memory and its management in multi-hosting setups is
+non-trivial.  
+%
+%Utility of a disk cache depends on application access behavior,
+%e.g., access patterns (sequential vs. random) and read-write ratios.
+%
+%Best effort disk caches employed by 
+Operating systems greedily consume
+all available free memory in the system (and in a virtual machine)
+to provision disk cache memory.
+%, which may be wasteful in a multi-hosting scenario.  
+%
+Further, disk cache management decisions of a guest OS are 
+localized to the virtual machine and are oblivious to memory 
+usage and disk cache utility 
+across the virtual machines hosted on the same physical machine.
+%}
+%
+%So, in a multi-hosting system, memory used to cache disk content 
+%by applications (or operating systems), if managed
+%at the system level, provide flexibility of differentiated 
+%partitioning to meet system level objectives like
+%application priority, cache utility etc..
+%
+Hypervisor caching~\cite{memtrans, oracletmem, kvmzcache, vmmexclusive, singleton} 
+provides a mechanism for system-wide management of % to globally manage 
+disk cache memory in virtualized systems. 
+%
+Hypervisor caches can be setup and used 
+in two different configurations.
+%
+First, available free system memory can be used to setup a 
+hypervisor managed second-chance cache.
+%
+Size of the second-chance cache and per-VM partitioning 
+can be implemented based on resource management policies.
+%provisioned dynamically 
+%across virtual machines depending on higher level policies.
+%
+Second, dynamic adjustment of virtual machine memory allocations through
+techniques like ballooning~\cite{vmware,hotplug} can explicitly
+push the disk caching to the hypervisor, fully or partially.
+%to enable system level management of memory use for disk content caching.
+%
+%\deba{remove? %puru. okay lets remove. in the context of this paper,
+%%may be coutner-production and confusing.
+%In fact, in the second configuration, the page cache of guest OSes
+%can be completely offloaded to the hypervisor.} 
+%
+The hypervisor in-turn can improve
+memory efficiency by employing per-VM differentiated provisioning,
+perform in-band compression and deduplication etc.~\cite{oracletmem,kvmzcache}.
+%State-of-the-art hypervisor caching solutions---Xen Transcendent memory~\cite{oracletmem}and KVM compressed host cache ~\cite{kvmzcache}---provide mechanisms to
+%distribute the hypervisor cache across VMs depending on
+%high level objectives like VM priority and cache utility.
+%
+
+Applicability of hypervisor caching in a derivative cloud setup is 
+hindered due to several reasons. Firstly, hypervisor cache management 
+is agnostic to the execution entities within the virtual machine. 
+For example, hypervisor caches cannot provide differential cache 
+allocations to multiple applications executing within a virtual machine
+in a seamless manner.
+%
+Enlightening the hypervisor cache with application level information 
+as an alternative design is cumbersome and requires understanding and 
+redesigning of the current integration framework. 
+%
+Secondly, in a derivative setup it may be useful for
+guest OSes to holistically manage all memory resources---allocated
+virtual machine memory and the hypervisor cache.
+%
+The current hypervisor caching solutions lack the capability to 
+expose interfaces 
+to provide visibility and local provisioning capability to the guest OS. 
+%
+%Secondly, the centralized model of hypervisor cache management 
+%does not have the necessary artifacts to support {\em decentralized 
+%policy enforcement requirements} of a derivative cloud.
+%
+%More specifically, with derivative
+%clouds current hypervisor differentiated provisioning techniques
+%cannot be extended to the nested entities due to the semantic
+%barrier between the hypervisor and execution entities
+%within virtual machines.
+%partitioning at a finer granularity
+%(e.g., at application level) is {\em not possible} in the existing 
+%framework.
+%
+%This is because, hypervisor caches operate in an application
+%agnostic manner and are unaware of application semantics due to the 
+%opaque nature of applications with respect to the hypervisor caches.
+%
+%
+%Thirdly, in a derivative cloud, memory management of applications
+%inside a VM (containers) are not limited to only disk cache provisioning.
+%
+
+
+
+%Our analysis of employing hypervisor cache in a derivative cloud
+%provides some interesting observations---hypervisor
+%cognizance does not need to extend to applications if a handshake
+%take cognizance of containers and still operate in an application
+%agnostic manner. 
+%
+%An usage scenario would involve differentiated provisioning
+%of the cache on a per-VM basis and the per-VM cache
+%would be differentiated on a per-container basis.
+%
+A desired memory management model in derivative clouds is to
+provide {\em independent memory management} at each level,
+without non-deterministic side effects and without loss of
+hypervisor control.
+%{\em without
+%encroaching} on each other.
+%
+The provisioning policies at each level should be mutually
+exclusive and at the same time allow each hosting entity
+to influence the memory provisioning decisions.
+%
+For example, a hypervisor level policy can be used to 
+implement VM level priorities and application level priorities 
+may be configured within each VM for differential treatment
+for provisioning the VM-specific hypervisor cache. 
+%of applications at the hypervisor level.
+%
+%puru commmented the next two lines
+%This design allows a VM-level memory manager to
+%enforce comprehensive policies beyond the hypervisor cache 
+%provisioning.
+%
+%For example, a VM-level policy has the flexibility to meet
+%application performance by provisioning in-VM memory and the
+%hypervisor cache resources.  
+%
+%\revised{
+Our proposed solution addresses the above requirements 
+through synergistic extensions in the guest OS
+and the hypervisor. 
+%
+%We believe effectiveness of black-box techniques, as an alternate
+%solution approach, would be bottlenecked because of two
+%primary factors.
+%
+While a non-intrusive black box technique is a possibility,
+it would require virtual machine transparent mechanisms to
+identify containers and their memory usage behaviors.
+%
+Further, influencing guest OS memory management can be at best
+influenced in an indirect manner, for which the cost-benefit
+tradeoff can be prohibitive.
+%
+%can be performed
+%in an indirect manner (if at all) which may not be as effective.
+%
+Moreover, given the struggle of black-box techniques 
+to meet dynamic resource demands even in non-nested settings~\cite{vmware,membal}, 
+we preferred a cooperative approach to address the above 
+resource management requirements. 
+%We design techniques to address the above requirements
+%to provide nested container level differentiation for
+%hypervisor cache management with nested policy enforcement
+%capability. 
+%
+%}
+
+%
+%A derivative cloud that hosts
+%applications in containers will in effect also yield application
+%level differentiation of the hypervisor cache.
+%
+%Therefore, it is difficult to realize differential treatment of cache 
+%usage by different applications from within the VMs. 
+% 
+%
+Further, recent advancements in memory technologies enable cost-effective
+storage mechanisms like non-volatile memory (NVM) and solid state
+devices (SSD).
+%
+One of the compelling usages of NVMs is to employ them
+as second chance caches or hypervisor caches 
+in the disk access path to improve disk access performance~\cite{extmem,sdc}.
+%
+%A natural usage of NVMs is to use them to implement 
+%hypervisor caches to enable a second chance cache for the VMs.
+%
+%
+%Application aware provisioning of 
+Provisioning of NVM-backed hypervisor caches
+in a derivative setup suffers from the same limitations as that
+of memory backed hypervisor caches.
+%
+A hypervisor caching solution that implements
+nesting aware policies (and by implication application level policies)
+irrespective of the storage methods is desirable.
+%
+%
+%Moreover, enabling multiple types and adaptive configuration
+%capability of storage devices for
+%hypervisor caching 
+%and their flexible configurability at the
+%application level provides 
+%flexibility in memory management policy design.
+%\puru{remove this line.}
+ 
+
+
+%
+%Derivative clouds~\cite{spotcheck,google}, a recent cloud service
+%delivery framework, are well suited for a layered distribution model of
+%platform-as-a-service (PaaS).
+%%
+%In this model, an intermediate PaaS service provider dynamically
+%rents VMs from a cloud provider like Amazon EC2 etc. and provisions
+%application containers in the VMs to serve the end customers.
+%%
+%Containers are provisioned and managed by the VM administrators,
+%who may want to employ higher level QoS policies in terms of priority or
+%optimize the resource utilization depending on the application 
+%characteristics.
+%%
+%For VMs enabled with hypervisor caches, the differentiated partitioning
+%of any VM's hypervisor cache share across application containers is 
+%simply not possible with the existing approaches.
+%%
+%Therefore, flexible partitioning of memory resources at two levels---across
+%VMs and across containers in a VM---opens up policy design avenues to
+%improve memory efficiency and application performance.
+%%
+
+
+%In this context of derivative clouds, flexible partitioning of hypervisor cache 
+%across containers depending on high level policy is desirable.
+%% hypervisor caching solutions
+%%should provide 
+%%
+%Further, the solution
+%should provide flexibility in choosing from different asymmetric cache storage 
+%backends like memory and SSD.
+%
+%
+Towards providing decentralized and differentiated memory management 
+in a derivative cloud setup, we make the following contributions,
+%our contributions are as follows,
+\begin{itemize}
+\item We design and implement \dd, a hypervisor caching framework
+with differentiated partitioning capabilities across application
+containers along with VM-level provisioning capabilities.
+Our implementation of \dd{} is with the KVM virtualization 
+solution and the LXC container framework~\cite{lxc}.
+\item We demonstrate the features and efficacy of \dd{} to
+support nested memory management.
+Specifically, its flexibility in terms of dynamic and elastic
+provisioning capabilities and configurable cache storage options.
+%and 
+%for application containers executing within VMs.
+%
+%\item The proposed solution is capable of dynamically adapting
+%capability to dynamically adapt
+%to changing demands and support for two levels of
+%nested memory management.
+\item We show the flexibility of \dd{} to adapt to changing demands
+as the basis for designing memory management
+policies in a derivative cloud setup through efficient provisioning of disk cache
+resources.
+%
+\end{itemize}  
+%
+%We have implemented and evaluated 
+%\dd{} with the KVM virtualization 
+%solution and the LXC container framework~\cite{lxc}.
+%%
+%Our results show that \dd{} is capable of dynamically adapting to 
+%changing demands and can support differentiated partitioning at multiple
+%levels.
+%
+%We show the flexibility of \dd{} as the basis for designing memory management
+%policies in a derivative cloud setup through efficient provisioning of disk cache
+%resources.

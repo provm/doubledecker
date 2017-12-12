@@ -1,0 +1,54 @@
+\section{Conclusions}
+%
+Popularity of low-overhead application container 
+frameworks has enabled derivative cloud based
+business models.
+%
+Several challenges in efficient resource management 
+for nested (containers inside VMs) setups require rethink
+of existing designs.
+%
+In this paper, we proposed \dd, a cooperative memory
+management framework which enabled multi-level provisioning
+of VM-level memory and the hypervisor cache.
+%resource conservative 
+%memory management along with guaranteed container level
+%isolations.
+%
+%\dd{}, an application container aware hypervisor cache provisioning
+%mechanism,
+%provides flexible memory management options and differentiated
+%memory provisioning at multiple levels.
+%
+%
+\dd{} supports two storage backends i.e., memory and SSD,
+and provisioning configurations at two levels---per-VM and 
+per-application container, for adaptive provisioning.
+%
+Our experimental evaluation demonstrated the effectiveness of
+\dd{} % by improving application performance 
+by extending container level priorities to the hypervisor cache.
+%
+We also showed that selective usage of different storage
+options of the hypervisor cache 
+based on application characteristics,
+improved overall performance in the derivative setup.
+%
+%Selective provisioning of applications on the SSD backend
+%is beneficial for all applications hosted in the derivative setup.
+%
+Most importantly, \dd{} 
+can simultaneously provision memory at the VM-level and the hypervisor cache,
+and effectively meet requirements of decentralized memory management
+in derivative cloud setups.
+%to address 
+%decentralized memory management requirements of 
+%a derivative cloud
+%setup which existing solutions do not address sufficiently.
+%
+%While \dd{} tested simple illustrative policies, 
+%we believe our work can facilitate sophisticated 
+%usage of policies that can handle multiple levels
+%of priorities and multiple storage backends.
+
+
